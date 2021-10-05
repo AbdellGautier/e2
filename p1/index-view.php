@@ -24,7 +24,7 @@
     <h2>Results</h2>
 
     <ul>
-        <li>Rounds played: <?php echo $roundsPlayed ?></li>
+        <li>Rounds played: <?php echo count($rounds) ?></li>
         <li>Winner:
             <span class="winner">
                 <?php echo $winner ?>
@@ -34,38 +34,34 @@
 
     <h2>Rounds</h2>
 
-    <ul class="container">
-        <li>Round #</li>
-        <li>Player 1 Card</li>
-        <li>Player 2 Card</li>
-        <li>Winner</li>
-        <li>Player 1 Cards Left</li>
-        <li>Player 2 Cards Left</li>
-    </ul>
-    <ul class="container">
-        <li>1</li>
-        <li>
-            <div class="card red">5 ♠</div>
-        </li>
-        <li>
-            <div class="card">3 ♣</div>
-        </li>
-        <li>Player 1</li>
-        <li>25</li>
-        <li>21</li>
-    </ul>
-    <ul class="container">
-        <li>2</li>
-        <li>
-            <div class="card red">Q ♦</div>
-        </li>
-        <li>
-            <div class="card">2 ♥</div>
-        </li>
-        <li>Player 2</li>
-        <li>24</li>
-        <li>22</li>
-    </ul>
+    <section>
+        <header>
+            <div class="col">Round #</div>
+            <div class="col">Player 1 Card</div>
+            <div class="col">Player 2 Card</div>
+            <div class="col">Winner</div>
+            <div class="col">Player 1 Cards Left</div>
+            <div class="col">Player 2 Cards Left</div>
+        </header>
+        <?php foreach($rounds as $round) { ?>
+        <div class="row">
+            <div class="col"><?php echo $round["Round"]; ?></div>
+            <div class="col">
+                <div class="card <?php echo $round["P1DrawColor"]; ?>">
+                    <?php echo $round["P1DrawRank"]; ?>
+                </div>
+            </div>
+            <div class="col">
+            <div class="card <?php echo $round["P2DrawColor"]; ?>">
+                    <?php echo $round["P2DrawRank"]; ?>
+                </div>
+            </div>
+            <div class="col"><?php echo $round["RoundWinner"]; ?></div>
+            <div class="col"><?php echo $round["P1CardsCount"]; ?></div>
+            <div class="col"><?php echo $round["P2CardsCount"]; ?></div>
+        </div>
+        <?php } ?>
+    </section>
 </body>
 
 </html>

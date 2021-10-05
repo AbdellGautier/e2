@@ -4,14 +4,18 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
+header, .row {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    list-style: none;
+}
+  
+.col {
+    flex: 1;
 }
 
 .card {
+    width: 35px;
+    height: 40px;
+    margin: 3px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
