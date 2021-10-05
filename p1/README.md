@@ -22,7 +22,7 @@
 + Pulsating CSS obtained from:         https://www.florin-pop.com/blog/2019/03/css-pulse-effect/   as I don't know the code by heart yet.
 
 ## Notes for instructor
-+ I tried to use associative arrays but spend many hours trying to make them work. It seems some PHP functions, like array_push and array_pop may be clearing the key => value structure of the indices. Not 100% sure though =(
++ I tried to use associative arrays but spent many hours trying to make them work. It seems some PHP functions, like array_push and array_pop may be clearing the key => value structure of the indices. Not 100% sure though =(
 + Because of the above, at one point I was close to changing the game entirely. However, I simplified the issue by using the regular arrays > var_dump was my friend :)
 + I increased my droplet to 2GB of RAM, which made a tremendous difference. With 1 GB, sometimes it got very slow.
 + Thank you for helping us in the GitHub forums =)
