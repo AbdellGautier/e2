@@ -14,7 +14,7 @@ header, .row {
 
 .card {
     width: 35px;
-    height: 40px;
+    height: 30px;
     margin: 3px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -29,9 +29,21 @@ header, .row {
 .red {
     color: #e41f25;
 }
-  
+
+.black {
+    color: #000;
+}
+
+.rounds {
+    background-color: #5f3f8a;
+    color: #fff;
+    padding: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .winner {
-    background-color: #04AA6D;
+    background-color: #529179;
     color: #fff;
     padding: 4px;
     font-size: 12px;

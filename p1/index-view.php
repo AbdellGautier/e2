@@ -24,7 +24,11 @@
     <h2>Results</h2>
 
     <ul>
-        <li>Rounds played: <?php echo count($rounds) ?></li>
+        <li>Rounds played: 
+            <span class="rounds">
+                <?php echo count($rounds) ?>
+            </span>
+        </li>
         <li>Winner:
             <span class="winner">
                 <?php echo $winner ?>
