@@ -115,19 +115,44 @@ while (count($player1Cards) != 0 && count($player2Cards) != 0) {
     }
 
     // Prepare the values before adding them to the round array
-    $round = count($rounds) + 1;                                                    // Round Number
+    $round = count($rounds) + 1;                                                        // Round Number
 
-    // Example card element value: S_10_10
     // Player 1 Information
-    $p1DrawSuit = substr($p1Draw, 0, 1);                                                // P1 draw card suit (e.g. 'D' = Diamonds)
-    $p1DrawRank = substr($p1Draw, strpos($p1Draw, "_") + 1, strrpos($p1Draw, "_") - 2); // P1 draw card rank (e.g. 'A', '9', or 'K')
-    $p1DrawColor = ($p1DrawSuit == "D" || $p1DrawSuit == "H") ? "red" : "black";        // P1 draw color (e.g. 'red' or 'black')
+    $p1DrawSuit = substr($p1Draw, 0, 1);                                                // P1 card suit (e.g. 'D' = Diamonds)
+    $p1DrawSuitSymbol = "";                                                             // P1 card suit HTML entity code
+
+    // Player 1 card suit icon determination
+    if ($p1DrawSuit == "C") {
+        $p1DrawSuitSymbol = "&clubsuit;";
+    } elseif ($p1DrawSuit == "D") {
+        $p1DrawSuitSymbol = "&diams;";
+    } elseif ($p1DrawSuit == "H") {
+        $p1DrawSuitSymbol = "&heartsuit;";
+    } else {
+        $p1DrawSuitSymbol = "&spadesuit;";
+    }
+
+    $p1DrawRank = substr($p1Draw, strpos($p1Draw, "_") + 1, strrpos($p1Draw, "_") - 2); // P1 card rank (e.g. 'A', '9', or 'K')
+    $p1DrawColor = ($p1DrawSuit == "D" || $p1DrawSuit == "H") ? "red" : "black";        // P1 color (e.g. 'red' or 'black')
     $p1CardsCount = count($player1Cards);                                               // P1 cards count after the round
 
     // Player 2 Information
-    $p2DrawSuit = substr($p2Draw, 0, strpos($p2Draw, "_"));                             // P2 draw card suit (e.g. 'D' = Diamonds)
-    $p2DrawRank = substr($p2Draw, strpos($p2Draw, "_") + 1, strrpos($p2Draw, "_") - 2); // P2 draw card rank (e.g. 'A', '9', or 'K')
-    $p2DrawColor = ($p2DrawSuit == "D" || $p2DrawSuit == "H") ? "red" : "black";        // P2 draw color (e.g. 'red' or 'black')
+    $p2DrawSuit = substr($p2Draw, 0, 1);                                                // P2 card suit (e.g. 'D' = Diamonds)
+    $p2DrawSuitSymbol = "";                                                             // P2 card suit HTML entity code
+
+    // Player 2 card suit icon determination
+    if ($p2DrawSuit == "C") {
+        $p2DrawSuitSymbol = "&clubsuit;";
+    } elseif ($p2DrawSuit == "D") {
+        $p2DrawSuitSymbol = "&diams;";
+    } elseif ($p2DrawSuit == "H") {
+        $p2DrawSuitSymbol = "&heartsuit;";
+    } else {
+        $p2DrawSuitSymbol = "&spadesuit;";
+    }
+
+    $p2DrawRank = substr($p2Draw, strpos($p2Draw, "_") + 1, strrpos($p2Draw, "_") - 2); // P2 card rank (e.g. 'A', '9', or 'K')
+    $p2DrawColor = ($p2DrawSuit == "D" || $p2DrawSuit == "H") ? "red" : "black";        // P2 color (e.g. 'red' or 'black')
     $p2CardsCount = count($player2Cards);                                               // P2 cards count after the round
 
     // Add the round information to the rounds array
@@ -137,10 +162,12 @@ while (count($player1Cards) != 0 && count($player2Cards) != 0) {
             "Round" => $round,
             "RoundWinner" => $roundWinner,
             "P1DrawSuit" => $p1DrawSuit,
+            "P1DrawSuitSymbol" => $p1DrawSuitSymbol,
             "P1DrawRank" => $p1DrawRank,
             "P1DrawColor" => $p1DrawColor,
             "P1CardsCount" => $p1CardsCount,
             "P2DrawSuit" => $p2DrawSuit,
+            "P2DrawSuitSymbol" => $p2DrawSuitSymbol,
             "P2DrawRank" => $p2DrawRank,
             "P2DrawColor" => $p2DrawColor,
             "P2CardsCount" => $p2CardsCount
@@ -152,9 +179,9 @@ $winner = "";
 
 // Will configure who is the winner of this game?
 if (count($player1Cards) == 0) {
-    $winner = "Player 1";
-} else {
     $winner = "Player 2";
+} else {
+    $winner = "Player 1";
 }
 
 // Credit to ahmad at: https://www.php.net/manual/en/function.shuffle.php#94697

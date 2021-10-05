@@ -1,5 +1,5 @@
 body {
-    background-color: #e6f8f4;
+    background-color: #f7f7f7;
     color: #222;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -7,14 +7,19 @@ body {
 header, .row {
     display: flex;
 }
+
+.header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
   
 .col {
     flex: 1;
 }
 
 .card {
-    width: 35px;
-    height: 30px;
+    width: 34px;
+    height: 20px;
     margin: 3px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -23,6 +28,7 @@ header, .row {
     padding-right: 3px;
     padding-top: 7px;
     padding-bottom: 7px;
+    text-align: center;
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
 }
 

@@ -39,7 +39,7 @@
     <h2>Rounds</h2>
 
     <section>
-        <header>
+        <header class="header">
             <div class="col">Round #</div>
             <div class="col">Player 1 Card</div>
             <div class="col">Player 2 Card</div>
@@ -52,12 +52,12 @@
             <div class="col"><?php echo $round["Round"]; ?></div>
             <div class="col">
                 <div class="card <?php echo $round["P1DrawColor"]; ?>">
-                    <?php echo $round["P1DrawRank"]; ?>
+                    <?php echo $round["P1DrawRank"]." ".$round["P1DrawSuitSymbol"]; ?>
                 </div>
             </div>
             <div class="col">
-            <div class="card <?php echo $round["P2DrawColor"]; ?>">
-                    <?php echo $round["P2DrawRank"]; ?>
+                <div class="card <?php echo $round["P2DrawColor"]; ?>">
+                    <?php echo $round["P2DrawRank"]." ".$round["P2DrawSuitSymbol"]; ?>
                 </div>
             </div>
             <div class="col"><?php echo $round["RoundWinner"]; ?></div>
