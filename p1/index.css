@@ -2,6 +2,89 @@ body {
     background-color: #f7f7f7;
     color: #222;
     font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.body-bg {
+    margin: 15px;
+}
+
+.header-bg {
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(231,238,255,1) 8%, rgba(205,219,255,1) 100%);
+    
+    padding-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+h1{
+    background-color: #a34141;
+    color: #fff;
+    padding: 10px;
+    display: inline;
+}
+
+.results-item {
+    line-height: 40px;
+}
+
+/* Credit to: Florin Pop for the pulsating winner effect */
+/* https://www.florin-pop.com/blog/2019/03/css-pulse-effect/ */
+.winner {
+    background: rgb(41, 187, 138);
+    color: #fff;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 0 0 0 rgba(41, 187, 138, 1);
+    animation: pulse-winner 2s infinite;
+}
+  
+@keyframes pulse-winner {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(41, 187, 138, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(51, 217, 178, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(51, 217, 178, 0);
+    }
+}
+
+.rounds {
+    background: rgb(111, 73, 180);
+    color: #fff;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 0 0 0 rgba(111, 73, 180);
+    animation: pulse-rounds 2s infinite;
+}
+  
+@keyframes pulse-rounds {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(111, 73, 180, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(51, 217, 178, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(51, 217, 178, 0);
+    }
 }
 
 header, .row {
@@ -17,10 +100,14 @@ header, .row {
     flex: 1;
 }
 
+.center {
+    text-align: center;
+}
+
 .card {
-    width: 34px;
+    width: 45px;
     height: 20px;
-    margin: 3px;
+    margin: 0 auto;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -38,20 +125,4 @@ header, .row {
 
 .black {
     color: #000;
-}
-
-.rounds {
-    background-color: #5f3f8a;
-    color: #fff;
-    padding: 4px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.winner {
-    background-color: #529179;
-    color: #fff;
-    padding: 4px;
-    font-size: 12px;
-    font-weight: bold;
 }
