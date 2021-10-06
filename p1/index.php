@@ -35,9 +35,7 @@ foreach ($cardSuits as $cSuit) {
     }
 }
 
-// Shuffle our deck, keeping the associative array intact.
-// If we shuffle using the regular 'shuffle()' function, we lose the custom keys
-// Credit to ahmad at: https://www.php.net/manual/en/function.shuffle.php#94697
+// Shuffle our deck
 shuffle($deck);
 
 // Will hold the players cards
@@ -59,7 +57,7 @@ foreach ($deck as $card) {
         // Assign a new card to the Player 2
         array_push($player2Cards, $card);
 
-        // Switch the next card dealing to the Player
+        // Switch the next card dealing to the Player 1
         $dealTo = "Player 1";
     }
 }
@@ -94,7 +92,7 @@ while (count($player1Cards) != 0 && count($player2Cards) != 0) {
         // Indicate that the Player 1 has won this round
         $roundWinner = "Player 1";
 
-        // Add the Player 2 card to Player 1
+        // Take the winning and losing cards and place them at the bottom of the deck
         array_unshift($player1Cards, $p1Draw);
         array_push($player1Cards, $p2Draw);
         array_unshift($player1Cards, array_pop($player1Cards));
@@ -104,7 +102,7 @@ while (count($player1Cards) != 0 && count($player2Cards) != 0) {
         // Indicate that the Player 2 has won this round
         $roundWinner = "Player 2";
 
-        // Add the Player 1 card to Player 2
+        // Take the winning and losing cards and place them at the bottom of the deck
         array_unshift($player2Cards, $p2Draw);
         array_push($player2Cards, $p1Draw);
         array_unshift($player2Cards, array_pop($player2Cards));
@@ -177,27 +175,11 @@ while (count($player1Cards) != 0 && count($player2Cards) != 0) {
 
 $winner = "";
 
-// Will configure who is the winner of this game?
+// Establishes who is the winner of this game
 if (count($player1Cards) == 0) {
     $winner = "Player 2";
 } else {
     $winner = "Player 1";
-}
-
-// Credit to ahmad at: https://www.php.net/manual/en/function.shuffle.php#94697
-function shuffle_assoc(&$array)
-{
-    $keys = array_keys($array);
-
-    shuffle($keys);
-
-    foreach ($keys as $key) {
-        $new[$key] = $array[$key];
-    }
-
-    $array = $new;
-
-    return true;
 }
 
 require 'index-view.php';
