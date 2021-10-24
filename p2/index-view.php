@@ -24,22 +24,32 @@
                         <div class="center">
                             <div class="row">
                                 <div class="col s12">
-                                    <h5>Computer Submarine Space</h5>
+                                    <h5>Computer Submarine Board</h5>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s1"></div>
+                                <div class="col s3"></div>
                                 <?php foreach (range('A', 'H') as $letter) { ?>
                                     <div class="col s1"><?php echo $letter; ?></div>
                                 <?php } ?>
                             </div>
                             <?php for ($i = 1; $i <= 8; $i++) { ?>
                                 <div class="row">
-                                    <div class="col s1"><?php echo $i; ?></div>
+                                    <div class="col s3"><?php echo $i; ?></div>
                                     <?php foreach (range('A', 'H') as $letter) { ?>
-                                        <div class="col s1">
-                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
-                                        </div>
+                                        <?php if ($playerBoard[$letter . $i] == "H") { ?>
+                                            <div class="col s1 submarine-hit">
+                                                <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                            </div>
+                                        <?php } else if ($playerBoard[$letter . $i] == "M") { ?>
+                                            <div class="col s1 miss">
+                                                <span>Miss</span>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="col s1">
+                                                <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                            </div>
+                                        <?php } ?>
                                     <?php } ?>
                                 </div>
                             <?php } ?>
@@ -61,22 +71,36 @@
                     <div class="center">
                         <div class="row">
                             <div class="col s12">
-                                <h5>You Submarine Space</h5>
+                                <h5>Your Submarine Board</h5>
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col s1"></div>
+                        <div class="col s3"></div>
                             <?php foreach (range('A', 'H') as $letter) { ?>
                                 <div class="col s1"><?php echo $letter; ?></div>
                             <?php } ?>
                         </div>
                         <?php for ($i = 1; $i <= 8; $i++) { ?>
                             <div class="row">
-                                <div class="col s1"><?php echo $i; ?></div>
+                                <div class="col s3"><?php echo $i; ?></div>
                                 <?php foreach (range('A', 'H') as $letter) { ?>
-                                    <div class="col s1">
-                                        <label><input type="radio" name="CB" value="<?php echo $letter . $i; ?>"><span></span></label>
-                                    </div>
+                                    <?php if ($computerBoard[$letter . $i] == "S") { ?>
+                                        <div class="col s1 submarine-present">
+                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                        </div>
+                                    <?php } elseif ($computerBoard[$letter . $i] == "H") { ?>
+                                        <div class="col s1 submarine-hit">
+                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                        </div>
+                                    <?php } else if ($playerBoard[$letter . $i] == "M") { ?>
+                                        <div class="col s1 miss">
+                                            <span>Miss</span>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="col s1">
+                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                        </div>
+                                    <?php } ?>
                                 <?php } ?>
                             </div>
                         <?php } ?>

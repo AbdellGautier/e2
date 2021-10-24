@@ -148,6 +148,18 @@ main {
     outline: none;
 }
 
+.submarine-present {
+    background-color: #666666;
+}
+
+.submarine-hit {
+    background-color: #F0003C;
+}
+
+.miss {
+    background-color: #aaaaaa;
+}
+
 .page-footer {
     background-color: #414a76;
 }
