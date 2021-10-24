@@ -14,7 +14,6 @@ body {
     top: 45%; 
     right: 50%;
     transform: translate(50%,-50%);
-    text-transform: uppercase;
     font-family: verdana;
     font-size: 2.75em;
     font-weight: 700;
@@ -30,11 +29,12 @@ body {
    help in keeping the footer at the bottom at all times */
 main {
 	flex: 1 0 auto;
+    background: linear-gradient(0deg, #eeeff5 0%, rgb(221 226 249) 75%, rgb(190 199 227) 100%);
 }
 
 /* The navbar / header background */
 .nav-wrapper {
-	background-color: #18214b;
+	background-color: rgb(190 199 227);
 }
 
 .center {
@@ -161,5 +161,8 @@ main {
 }
 
 .page-footer {
-    background-color: #414a76;
+    /* background-color: #414a76; */
+    padding-top: 0px;
+    background: rgb(115,131,204);
+    background: linear-gradient(0deg, rgba(115,131,204,1) 0%, rgba(79,89,141,1) 57%, rgba(43,51,87,1) 95%, rgba(238,239,245,1) 100%);
 }

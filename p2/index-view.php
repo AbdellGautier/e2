@@ -112,10 +112,20 @@
     <footer class="page-footer">
         <div class="container">
             <div class="row">
+                <div class="col s12">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Project 2 - DGMD E-2</h5>
+                    <h5 class="white-text">How to Play?</h5>
                     <p class="grey-text text-lighten-4">
-                        Project 2 game assignment for the Web Programming for Beginners using PHP course at the Harvard Extension School.
+                        <ol>
+                            <li>Both, the player and computer each have one submarine</li>
+                            <li>Player selects a location on the computer board (left) and launch the missile</li>
+                            <li>If Player hit the computer's submarine, the board will indicate it, otherwise it will be a missed shot.</li>
+                            <li>The computer will try to hit the player's submarine as well</li>
+                            <li>The one who hits the entire submarine will win!</li>
+                        </ol>
                     </p>
                 </div>
                 <div class="col l4 offset-l2 s12">
@@ -132,11 +142,6 @@
                                 target="_blank">Big 3D Button</a></li>
                     </ul>
                 </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                Thanks Professor Buck =)
             </div>
         </div>
     </footer>
