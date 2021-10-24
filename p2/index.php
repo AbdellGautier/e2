@@ -68,33 +68,72 @@ function placeSubmarine($board, $submarineSpots) {
     // Randomly, get the orientation for this instance
     $submarineOrientation = array_rand(array_flip($submarineOrientationOptions), 1);
 
+    // Will hold all board's unique letters (columns)
+    $allBoardLetters = [];
+
+    // Iterate over the board array for unique letters extraction
+    foreach ($board as $key => $value) {
+        // Add the new character, if not already in our collection
+        if (!in_array(substr($key, 0, 1), $allBoardLetters)) {
+            // Add the new letter to our unique letters collection
+            array_push($allBoardLetters, substr($key, 0, 1));
+        }
+    }
+
+    // Will hold all board's numbers (rows)
+    $allBoardNumbers = range(1, count($allBoardLetters));
+
     if ($submarineOrientation == "horizontal") {
-        // We will need to position the submarine
+        // -----------------------------------------
+        // Position the submarine horizontally,
         // following a similar pattern as in: 
         // A1, B1, C1, D1, E1
 
         // Number index stays the same
         // The Letter column is what changes
+        // -----------------------------------------
+        
+        // Get a random letter - Only consider letters
+        // that can accomodate the submarine size
+        $validCharactersToStart = array_slice($allBoardLetters, 0, count($allBoardLetters) - $submarineSpots);
+        
+        // Select the starting letter position,
+        // from the list of valid characters
+        $startingLetter = array_rand(array_flip($validCharactersToStart), 1);
+
+        // Select a random row number from the board
+        $rowNumber = array_rand(array_flip($allBoardNumbers), 1);
+
+        // Apply the spots where the submarine lies
+        for ($i = 1; $i <= $submarineSpots; $i++) {
+            $board[++$startingLetter . $rowNumber] = "S";
+        }
     } else {
-        // We will need to position the submarine
+        // -----------------------------------------
+        // Position the submarine vertically,
         // following a similar pattern as in: 
-        // D2, D3, D4, D5, D6
+        // F4, F5, F6, F7, F8
 
         // Number index is what changes
         // The Letter column stays the same
-    }
+        // -----------------------------------------
 
-    // **************************************
-    // **************************************
-    // Temporary location of both subs,
-    // Until I finish this function
-    // **************************************
-    // **************************************
-    $board["D1"] = "S";
-    $board["D2"] = "S";
-    $board["D3"] = "S";
-    $board["D4"] = "S";
-    $board["D5"] = "S";
+        // Select the letter position,
+        // from the list of valid characters
+        $startingLetter = array_rand(array_flip($allBoardLetters), 1);
+
+        // Get a random number - Only consider numbers
+        // that can accomodate the submarine size
+        $validNumberToStart = array_slice($allBoardNumbers, 0, count($allBoardNumbers) - $submarineSpots);
+
+        // Select a random row number from the board
+        $rowNumber = array_rand(array_flip($validNumberToStart), 1);
+
+        // Apply the spots where the submarine lies
+        for ($i = $rowNumber; $i < ($rowNumber + $submarineSpots); $i++) {
+            $board[$startingLetter . $i] = "S";
+        }
+    }
 
     return $board;
 }
