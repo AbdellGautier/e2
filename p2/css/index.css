@@ -37,6 +37,10 @@ main {
 	background-color: #18214b;
 }
 
+.center {
+    text-align: center;
+}
+
 .underline {
     text-decoration: underline;
 }

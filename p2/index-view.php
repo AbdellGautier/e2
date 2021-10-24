@@ -20,216 +20,66 @@
         <div class="container">
             <div class="row">
                 <div class="col s6">
-                    <h5>Your Submarine Space</h5>
                     <form method="POST" action="process.php">
-                        <div class="row">
-                            <div class="col s1"></div>
-                            <div class="col s1">A</div>
-                            <div class="col s1">B</div>
-                            <div class="col s1">C</div>
-                            <div class="col s1">D</div>
-                            <div class="col s1">E</div>
-                            <div class="col s1">F</div>
-                            <div class="col s1">G</div>
-                            <div class="col s1">H</div>
+                        <div class="center">
+                            <div class="row">
+                                <div class="col s12">
+                                    <h5>Computer Submarine Space</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s1"></div>
+                                <?php foreach (range('A', 'H') as $letter) { ?>
+                                    <div class="col s1"><?php echo $letter; ?></div>
+                                <?php } ?>
+                            </div>
+                            <?php for ($i = 1; $i <= 8; $i++) { ?>
+                                <div class="row">
+                                    <div class="col s1"><?php echo $i; ?></div>
+                                    <?php foreach (range('A', 'H') as $letter) { ?>
+                                        <div class="col s1">
+                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="row">
-                            <div class="col s1">1</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
+                            <div class="col s12 center">
+                                <button class="pushable">
+                                    <span class="shadow"></span>
+                                    <span class="edge"></span>
+                                    <span class="front">
+                                        <i class="material-icons">arrow_upward</i><br>Launch Missile
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col s1">2</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col s1">3</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col s1">4</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col s1">5</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col s1">6</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col s1">7</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col s1">8</div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="A1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="B1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="C1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="D1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="E1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="F1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="G1"><span></span></label></div>
-                            <div class="col s1"><label><input type="radio" name="P1B" value="H1"><span></span></label></div>
-                        </div>
-                        <button class="pushable">
-                            <span class="shadow"></span>
-                            <span class="edge"></span>
-                            <span class="front">
-                                Launch Missile
-                            </span>
-                        </button>
                     </form>
                 </div>
                 <div class="col s6 right-align" style="padding-top: 10px">
-                    <h5>Computer's Submarine Space</h5>
-                    <div class="row">
+                    <div class="center">
+                        <div class="row">
+                            <div class="col s12">
+                                <h5>You Submarine Space</h5>
+                            </div>
+                        </div>
+                        <div class="row">
                         <div class="col s1"></div>
-                        <div class="col s1">A</div>
-                        <div class="col s1">B</div>
-                        <div class="col s1">C</div>
-                        <div class="col s1">D</div>
-                        <div class="col s1">E</div>
-                        <div class="col s1">F</div>
-                        <div class="col s1">G</div>
-                        <div class="col s1">H</div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">1</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">2</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">3</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">4</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">5</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">6</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">7</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col s1">8</div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="A1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="B1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="C1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="D1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="E1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="F1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="G1"><span></span></label></div>
-                        <div class="col s1"><label><input type="radio" name="C1B" value="H1"><span></span></label></div>
+                            <?php foreach (range('A', 'H') as $letter) { ?>
+                                <div class="col s1"><?php echo $letter; ?></div>
+                            <?php } ?>
+                        </div>
+                        <?php for ($i = 1; $i <= 8; $i++) { ?>
+                            <div class="row">
+                                <div class="col s1"><?php echo $i; ?></div>
+                                <?php foreach (range('A', 'H') as $letter) { ?>
+                                    <div class="col s1">
+                                        <label><input type="radio" name="CB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
