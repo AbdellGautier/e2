@@ -13,18 +13,24 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="title">&nbsp;&nbsp;Submarine Attack</a>
+            <a class="title">&nbsp;&nbsp;Submarine Attack</a>
         </div>
     </nav>
     <main>
         <div class="container">
             <div class="row">
-                <div class="col s6">
+                <div class="col s5 center">
                     <form method="POST" action="process.php">
                         <div class="center">
                             <div class="row">
                                 <div class="col s12">
-                                    <h5>Computer Submarine Board</h5>
+                                    <?php if ($winner == "Player") { ?>
+                                        <h5 class="bold">Computer Submarine Region <span class="winner">Winner</span></h5>
+                                    <?php } elseif ($winner == "Tie") { ?>
+                                        <h5 class="bold">Computer Submarine Region <span class="tie">Tie</span></h5>
+                                    <?php } else { ?>
+                                        <h5 class="bold">Computer Submarine Region</h5>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="row">
@@ -37,17 +43,17 @@
                                 <div class="row">
                                     <div class="col s3"><?php echo $i; ?></div>
                                     <?php foreach (range('A', 'H') as $letter) { ?>
-                                        <?php if ($playerBoard[$letter . $i] == "H") { ?>
+                                        <?php if ($computerBoard[$letter . $i] == "H") { ?>
                                             <div class="col s1 submarine-hit">
-                                                <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                                <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
                                             </div>
-                                        <?php } else if ($playerBoard[$letter . $i] == "M") { ?>
+                                        <?php } else if ($computerBoard[$letter . $i] == "M") { ?>
                                             <div class="col s1 miss">
-                                                <span>Miss</span>
+                                                <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
                                             </div>
                                         <?php } else { ?>
                                             <div class="col s1">
-                                                <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                                <label><input type="radio" name="CB" value="<?php echo $letter . $i; ?>"><span></span></label>
                                             </div>
                                         <?php } ?>
                                     <?php } ?>
@@ -56,22 +62,41 @@
                         </div>
                         <div class="row">
                             <div class="col s12 center">
-                                <button class="pushable">
-                                    <span class="shadow"></span>
-                                    <span class="edge"></span>
-                                    <span class="front">
-                                        <i class="material-icons">arrow_upward</i><br>Launch Missile
-                                    </span>
-                                </button>
+                                <?php if (strlen($winner) > 0) { ?>
+                                    <button class="pushable" name="btnPlayAgain">
+                                        <span class="shadow"></span>
+                                        <span class="edge"></span>
+                                        <span class="front">
+                                            <i class="material-icons">refresh</i><br>Play Again
+                                        </span>
+                                    </button>
+                                <?php } else { ?>
+                                    <button class="pushable" name="btnLaunchMissile">
+                                        <span class="shadow"></span>
+                                        <span class="edge"></span>
+                                        <span class="front">
+                                            <i class="material-icons">arrow_upward</i><br>Launch Missile
+                                        </span>
+                                    </button>
+                                <?php } ?>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col s6 right-align" style="padding-top: 10px">
+                <div class="col s2">
+                    <div class="vertical-line"></div>
+                </div>
+                <div class="col s5 center">
                     <div class="center">
                         <div class="row">
                             <div class="col s12">
-                                <h5>Your Submarine Board</h5>
+                                <?php if ($winner == "Computer") { ?>
+                                    <h5 class="bold">Player Submarine Region <span class="winner">Winner</span></h5>
+                                <?php } elseif ($winner == "Tie") { ?>
+                                    <h5 class="bold">Player Submarine Region <span class="tie">Tie</span></h5>
+                                <?php } else { ?>
+                                    <h5 class="bold">Player Submarine Region</h5>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="row">
@@ -84,21 +109,21 @@
                             <div class="row">
                                 <div class="col s3"><?php echo $i; ?></div>
                                 <?php foreach (range('A', 'H') as $letter) { ?>
-                                    <?php if ($computerBoard[$letter . $i] == "S") { ?>
+                                    <?php if ($playerBoard[$letter . $i] == "S") { ?>
                                         <div class="col s1 submarine-present">
-                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                            <label><input type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
-                                    <?php } elseif ($computerBoard[$letter . $i] == "H") { ?>
+                                    <?php } elseif ($playerBoard[$letter . $i] == "H") { ?>
                                         <div class="col s1 submarine-hit">
-                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                            <label><input type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } else if ($playerBoard[$letter . $i] == "M") { ?>
                                         <div class="col s1 miss">
-                                            <span>Miss</span>
+                                            <label><input type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } else { ?>
                                         <div class="col s1">
-                                            <label><input type="radio" name="PB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                            <label><input type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } ?>
                                 <?php } ?>
