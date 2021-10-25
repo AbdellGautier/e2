@@ -7,12 +7,14 @@ $playerBoard = [];
 $winner = "";
 
 // Check if this is the first time playing the game
-if (empty($_SESSION["computerBoard"]) ||
+if (
+    empty($_SESSION["computerBoard"]) ||
     empty($_SESSION["playerBoard"]) ||
-    !empty($_SESSION["PlayAgain"])) {
+    !empty($_SESSION["playAgain"])
+) {
 
     // Clear the Play Again flag
-    $_SESSION["PlayAgain"] = null;
+    $_SESSION["playAgain"] = null;
 
     // Will hold the Computer's submarine board spaces and moves. This
     // is where the player interact by selecting and launching missiles to.
@@ -34,33 +36,27 @@ if (empty($_SESSION["computerBoard"]) ||
     // How many spots does a submarine occupy on each board?
     $submarineSpots = 5;
 
-    // ---------------------------------------------------------
-    // Temporary Code - Replace with random submarine placement
-    // ---------------------------------------------------------
+    // Place the computer submarine on the computer board
     $computerBoard = placeSubmarine($computerBoard, $submarineSpots);
 
-    // ---------------------------------------------------------
-    // Temporary Code - Replace with random submarine placement
-    // ---------------------------------------------------------
+    // Place the player submarine on the player board
     $playerBoard = placeSubmarine($playerBoard, $submarineSpots);
 
     // Place the initial state of the game in the session
     $_SESSION["computerBoard"] = $computerBoard;
     $_SESSION["playerBoard"] = $playerBoard;
     $_SESSION["submarineSpots"] = $submarineSpots;
-
-    // Grab from the Session the ongoing game information...
-
-    // At some point, the session will indicate the winner,
-    // at which point we will update the view to reflect that
 } else {
     // Get the current state of the game from the session
     $computerBoard = $_SESSION["computerBoard"];
     $playerBoard = $_SESSION["playerBoard"];
-    $winner = $_SESSION["winner"];
+    
+    // In case the user refresh the page
+    $winner = $_SESSION["winner"] ?? "";
 }
 
-function placeSubmarine($board, $submarineSpots) {
+function placeSubmarine($board, $submarineSpots)
+{
     // These are our only two options in 
     // how to place a submarine on the board
     $submarineOrientationOptions = ["horizontal", "vertical"];
@@ -92,11 +88,11 @@ function placeSubmarine($board, $submarineSpots) {
         // Number index stays the same
         // The Letter column is what changes
         // -----------------------------------------
-        
+
         // Get a random letter - Only consider letters
         // that can accomodate the submarine size
         $validCharactersToStart = array_slice($allBoardLetters, 0, count($allBoardLetters) - $submarineSpots);
-        
+
         // Select the starting letter position,
         // from the list of valid characters
         $startingLetter = array_rand(array_flip($validCharactersToStart), 1);

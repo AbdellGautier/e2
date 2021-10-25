@@ -9,11 +9,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // -------------------------------------------------
         // Indicate that we want to play again
         // -------------------------------------------------
-        $_SESSION["PlayAgain"] = true;
+        $_SESSION["playAgain"] = true;
+
+        // Clear any lingering session values
+        $_SESSION["playerBoard"] = null;
+        $_SESSION["computerBoard"] = null;
+        $_SESSION["winner"] = "";
     } elseif (
+        isset($_POST['btnLaunchMissile']) &&
         !empty($_SESSION["playerBoard"]) &&
         !empty($_SESSION["computerBoard"]) &&
-        isset($_POST['btnLaunchMissile'])
+        !empty($_POST['CB'])
     ) {
         // -------------------------------------------------
         // Game in progress, proceed to determine next steps
