@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 - Submarine Attack</title>
+    <title>Submarine Attack - Project 2 - DGMD E-2</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -14,7 +14,7 @@
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a class="title">&nbsp;&nbsp;Submarine Attack</a>
+            <a class="title">Submarine Attack</a>
         </div>
     </nav>
     <main>
@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col s3"></div>
                                 <?php foreach (range('A', 'H') as $letter) { ?>
-                                    <div class="col s1"><?php echo $letter; ?></div>
+                                    <div class="col s1 option"><?php echo $letter; ?></div>
                                 <?php } ?>
                             </div>
                             <?php for ($i = 1; $i <= 8; $i++) { ?>
@@ -45,15 +45,15 @@
                                     <div class="col s3"><?php echo $i; ?></div>
                                     <?php foreach (range('A', 'H') as $letter) { ?>
                                         <?php if ($computerBoard[$letter . $i] == "H") { ?>
-                                            <div class="col s1 submarine-hit">
+                                            <div class="col s1 option sub-hit">
                                                 <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
                                             </div>
                                         <?php } else if ($computerBoard[$letter . $i] == "M") { ?>
-                                            <div class="col s1 miss">
+                                            <div class="col s1 option miss">
                                                 <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
                                             </div>
                                         <?php } else { ?>
-                                            <div class="col s1">
+                                            <div class="col s1 option">
                                                 <label><input type="radio" name="CB" value="<?php echo $letter . $i; ?>"><span></span></label>
                                             </div>
                                         <?php } ?>
@@ -108,7 +108,7 @@
                         <div class="row">
                         <div class="col s3"></div>
                             <?php foreach (range('A', 'H') as $letter) { ?>
-                                <div class="col s1"><?php echo $letter; ?></div>
+                                <div class="col s1 option"><?php echo $letter; ?></div>
                             <?php } ?>
                         </div>
                         <?php for ($i = 1; $i <= 8; $i++) { ?>
@@ -116,19 +116,19 @@
                                 <div class="col s3"><?php echo $i; ?></div>
                                 <?php foreach (range('A', 'H') as $letter) { ?>
                                     <?php if ($playerBoard[$letter . $i] == "S") { ?>
-                                        <div class="col s1 submarine-present">
+                                        <div class="col s1 option sub-present">
                                             <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } elseif ($playerBoard[$letter . $i] == "H") { ?>
-                                        <div class="col s1 submarine-hit">
+                                        <div class="col s1 option sub-hit">
                                             <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } else if ($playerBoard[$letter . $i] == "M") { ?>
-                                        <div class="col s1 miss">
+                                        <div class="col s1 option miss">
                                             <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } else { ?>
-                                        <div class="col s1">
+                                        <div class="col s1 option">
                                             <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                         </div>
                                     <?php } ?>
@@ -152,9 +152,9 @@
                     <p class="grey-text text-lighten-4">
                         <ol>
                             <li>Player and computer each have one submarine, randomly placed.</li>
-                            <li>Select a location on the computer board (left) and launch the missile</li>
+                            <li>Select a location on the computer's board (left) and launch the missile</li>
                             <li>If you hit the computer's submarine, a red mark will appear</li>
-                            <li>The computer will try to hit your submarine as well</li>
+                            <li>The computer will try to hit your submarine (right) as well</li>
                             <li>The one who hits the entire submarine first win!</li>
                         </ol>
                     </p>

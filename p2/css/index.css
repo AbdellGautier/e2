@@ -66,13 +66,29 @@ h2 {
     font-weight: bold;
 }
 
+.option {
+    height: 40px;
+}
+
 /* Override Materialize radio buttons appearance */
+[type="radio"]:not(:checked)+span, [type="radio"]:checked+span {
+    height: 20px;
+    line-height: 20px;
+}
+
 [type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
 	background-color: #F0003C;
 }
 
 [type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
     border: 2px solid #F0003C;
+}
+
+[type="radio"]+span:before, [type="radio"]+span:after {
+    height: 20px;
+    width: 20px;
+    top: 8px;
+    margin: 1px;
 }
 
 /* Launch Missile 3D Button styles */
@@ -169,26 +185,18 @@ h2 {
     outline: none;
 }
 
-.submarine-present {
+/* Submarine-related */
+.sub-present {
     background-color: #323232;
 }
 
-.submarine-present-left  {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
-.submarine-present-right  {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-.submarine-hit {
+.sub-hit {
     background-color: #F0003C;
 }
 
 .miss {
     background-color: #aaaaaa;
+    border-radius: 25px;
 }
 
 .no-pointer {
@@ -250,8 +258,7 @@ h2 {
 }
 
 .page-footer {
-    /* background-color: #414a76; */
-    padding-top: 0px;
+    padding-top: 10px;
     background: rgb(115,131,204);
     background: linear-gradient(0deg, rgba(115,131,204,1) 0%, rgba(79,89,141,1) 57%, rgba(43,51,87,1) 95%, rgba(238,239,245,1) 100%);
 }

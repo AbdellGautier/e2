@@ -16,8 +16,15 @@ if (
     // Clear the Play Again flag
     $_SESSION["playAgain"] = null;
 
+    // ---------------------------------------------------------------------
     // Will hold the Computer's submarine board spaces and moves. This
     // is where the player interact by selecting and launching missiles to.
+    // 
+    // Guidance: Any key in here can have the following values:
+    //           S = Submarine Present
+    //           M = Miss
+    //           H = Submarine Hit
+    // ---------------------------------------------------------------------
     $computerBoard = [
         "A1" => "", "A2" => "", "A3" => "", "A4" => "", "A5" => "", "A6" => "", "A7" => "", "A8" => "",
         "B1" => "", "B2" => "", "B3" => "", "B4" => "", "B5" => "", "B6" => "", "B7" => "", "B8" => "",
@@ -55,6 +62,11 @@ if (
     $winner = $_SESSION["winner"] ?? "";
 }
 
+// -----------------------------------------
+// Randomly place a submarine on a board.
+// The submarine could be placed vertically
+// or horizontally in a random location.
+// -----------------------------------------
 function placeSubmarine($board, $submarineSpots)
 {
     // These are our only two options in 
@@ -80,14 +92,14 @@ function placeSubmarine($board, $submarineSpots)
     $allBoardNumbers = range(1, count($allBoardLetters));
 
     if ($submarineOrientation == "horizontal") {
-        // -----------------------------------------
+        // --------------------------------------------
         // Position the submarine horizontally,
         // following a similar pattern as in: 
         // A1, B1, C1, D1, E1
 
-        // Number index stays the same
-        // The Letter column is what changes
-        // -----------------------------------------
+        // Guidance: Number index stays the same,
+        //           the Letter column is what changes
+        // --------------------------------------------
 
         // Get a random letter - Only consider letters
         // that can accomodate the submarine size
@@ -105,24 +117,23 @@ function placeSubmarine($board, $submarineSpots)
             $board[++$startingLetter . $rowNumber] = "S";
         }
     } else {
-        // -----------------------------------------
+        // --------------------------------------------
         // Position the submarine vertically,
         // following a similar pattern as in: 
         // F4, F5, F6, F7, F8
 
-        // Number index is what changes
-        // The Letter column stays the same
-        // -----------------------------------------
+        // Guidance: Number index is what changes,
+        //           the Letter column stays the same
+        // --------------------------------------------
 
-        // Select the letter position,
-        // from the list of valid characters
+        // Select a letter position,
+        // from the list of valid letters
         $startingLetter = array_rand(array_flip($allBoardLetters), 1);
 
-        // Get a random number - Only consider numbers
-        // that can accomodate the submarine size
+        // Get only the numbers that can accomodate the submarine size
         $validNumberToStart = array_slice($allBoardNumbers, 0, count($allBoardNumbers) - $submarineSpots);
 
-        // Select a random row number from the board
+        // Select a random row number from the valid ones
         $rowNumber = array_rand(array_flip($validNumberToStart), 1);
 
         // Apply the spots where the submarine lies
