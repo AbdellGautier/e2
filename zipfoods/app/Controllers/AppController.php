@@ -15,6 +15,13 @@ class AppController extends Controller
         ]);
     }
 
+    public function about()
+    {
+        return $this->app->view('about', [
+            'appDescription' => "ZipFoods is the ultimate site to get your groceries!"
+        ]);
+    }
+
     public function contact()
     {
         return $this->app->view('contact', [
