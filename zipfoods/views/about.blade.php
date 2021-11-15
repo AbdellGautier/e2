@@ -1,3 +1,15 @@
-<h1>About ZipFoods</h1>
+@extends("templates/master")
+
+@section("title")
+    About
+@endsection
+
+@section("head")
+    <link href="/css/about.css" rel="stylesheet">
+@endsection
+
+@section("content")
+<h1>About</h1>
 
 {{ $appDescription }}
+@endsection
