@@ -1,11 +1,11 @@
 @extends('templates/master')
 
 @section('title')
-{{ $app->config('app.name') }}
+    {{ $app->config('app.name') }}
 @endsection
 
 @section('content')
-    
+
     <h2>Welcome!</h2>
 
     <p>
