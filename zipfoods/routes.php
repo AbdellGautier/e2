@@ -9,5 +9,7 @@ return [
     '/about' => ['AppController', 'about'],
     '/products' => ['ProductsController', 'index'],
     '/product' => ['ProductsController', 'show'],
-    '/missing' => ['ProductsController', 'missing']
+    '/products/save-review' => ['ProductsController', 'saveReview'],
+    '/missing' => ['ProductsController', 'missing'],
+    '/practice' => ['AppController', 'practice']
 ];

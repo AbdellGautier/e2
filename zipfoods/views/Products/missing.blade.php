@@ -11,5 +11,5 @@
         Sorry, we were not able to find the product you were looking for.
     </p>
 
-    <a href='/products'>Check out our other products...</a>
+    <a href='/products'>&larr; Return to all products</a>
 @endsection

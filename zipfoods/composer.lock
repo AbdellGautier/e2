@@ -8,28 +8,32 @@
     "packages": [
         {
             "name": "dflydev/dot-access-data",
-            "version": "v2.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dflydev/dflydev-dot-access-data.git",
-                "reference": "70a44e8a46c7943118cbbf741ef3411d84e38c81"
+                "reference": "0992cc19268b259a39e86f296da5f0677841f42c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/70a44e8a46c7943118cbbf741ef3411d84e38c81",
-                "reference": "70a44e8a46c7943118cbbf741ef3411d84e38c81",
+                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/0992cc19268b259a39e86f296da5f0677841f42c",
+                "reference": "0992cc19268b259a39e86f296da5f0677841f42c",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0"
+                "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0"
+                "phpstan/phpstan": "^0.12.42",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3",
+                "scrutinizer/ocular": "1.6.0",
+                "squizlabs/php_codesniffer": "^3.5",
+                "vimeo/psalm": "^3.14"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-main": "3.x-dev"
                 }
             },
             "autoload": {
@@ -56,6 +60,11 @@
                     "name": "Carlos Frutos",
                     "email": "carlos@kiwing.it",
                     "homepage": "https://github.com/cfrutos"
+                },
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com"
                 }
             ],
             "description": "Given a deep data structure, access data by dot notation.",
@@ -68,9 +77,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dflydev/dflydev-dot-access-data/issues",
-                "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/master"
+                "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.1"
             },
-            "time": "2017-12-21T14:08:21+00:00"
+            "time": "2021-08-13T13:06:58+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -779,20 +788,20 @@
         },
         {
             "name": "susanbuck/e2core",
-            "version": "0.1.9",
+            "version": "0.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/susanBuck/e2core.git",
-                "reference": "b03ade8be562c88eb150d78d7578b113d979f9ef"
+                "reference": "5b3a80e987d64523814ea066718038dba8ea9546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/susanBuck/e2core/zipball/b03ade8be562c88eb150d78d7578b113d979f9ef",
-                "reference": "b03ade8be562c88eb150d78d7578b113d979f9ef",
+                "url": "https://api.github.com/repos/susanBuck/e2core/zipball/5b3a80e987d64523814ea066718038dba8ea9546",
+                "reference": "5b3a80e987d64523814ea066718038dba8ea9546",
                 "shasum": ""
             },
             "require": {
-                "dflydev/dot-access-data": "^2.0",
+                "dflydev/dot-access-data": "^3.0",
                 "philo/laravel-blade": "3.*",
                 "symfony/var-dumper": "^4.3",
                 "vlucas/phpdotenv": "2.3.0"
@@ -816,9 +825,9 @@
             "description": "Practice framework for CSCI E-2",
             "support": {
                 "issues": "https://github.com/susanBuck/e2core/issues",
-                "source": "https://github.com/susanBuck/e2core/tree/master"
+                "source": "https://github.com/susanBuck/e2core/tree/0.1.11"
             },
-            "time": "2019-12-06T21:49:00+00:00"
+            "time": "2021-11-17T14:04:06+00:00"
         },
         {
             "name": "symfony/debug",

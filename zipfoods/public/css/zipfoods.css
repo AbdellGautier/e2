@@ -82,6 +82,36 @@ h2 {
 
 
 /*----------------------------------------------------
+FORMS
+-----------------------------------------------------*/
+input,
+textarea {
+    font-size: 2.4rem;
+}
+
+.form-control,
+.btn {
+    font-size: 1.4rem;
+}
+
+.btn {
+    margin: 10px;
+}
+
+label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+ul.error {
+    list-style-type: none;
+}
+
+
+
+/*----------------------------------------------------
 PRODUCTS
 -----------------------------------------------------*/
 #product-index {
@@ -138,4 +168,21 @@ a.product-link:hover {
     font-weight: bold;
     font-size: 2rem;
     padding: 10px;
+}
+
+#product-review {
+    margin: 20px auto;
+    max-width: 75%;
+    background-color: #eee;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+#product-review input {
+    width: 200px;
+    margin: auto;
+}
+
+#product-review textarea {
+    height: 100px;
 }
