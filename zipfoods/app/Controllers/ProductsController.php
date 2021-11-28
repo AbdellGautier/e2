@@ -27,12 +27,22 @@ class ProductsController extends Controller
             return $this->app->view('Products/missing');
         } else {
             $product = $productQuery[0];
+            $product_id = $product["id"];
         }
 
         $reviewSaved = $this->app->old("reviewSaved");
 
+        $reviewsQuery = $this->app->db()->findByColumn("reviews", "product_id", "=", $product_id);
+
+        if (empty($reviewsQuery)) {
+            $reviews = [];
+        } else {
+            $reviews = $reviewsQuery;
+        }
+
         return $this->app->view("Products/show", [
             "product" => $product,
+            "reviews" => $reviews,
             "reviewSaved" => $reviewSaved
         ]);
     }

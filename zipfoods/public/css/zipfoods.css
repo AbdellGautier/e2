@@ -186,3 +186,24 @@ a.product-link:hover {
 #product-review textarea {
     height: 100px;
 }
+
+.reviews {
+    text-align: left;
+    margin: 20px auto;
+    max-width: 75%;
+    padding: 10px;
+}
+
+.review-name {
+    font-size: 1.75rem;
+    margin: 5px 0 10px 0;
+    vertical-align: baseline;
+}
+
+.review-submitted-date {
+    color: #0a0;
+}
+
+.center {
+    text-align: center;
+}

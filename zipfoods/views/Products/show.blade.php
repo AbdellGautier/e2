@@ -54,5 +54,19 @@
         </ul>
     @endif
 
+    <h3>Product Reviews</h3>
+    <div id='reviews' class="reviews">
+        @if (empty($reviews) != true)
+            @foreach ($reviews as $review)
+                <div class='review-name'>By: {{ $review['name'] }}</div>
+                <div>{{ $review['review'] }}</div>
+                <div class='review-submitted-date'>Date: {{ $review['submitted_date'] }}</div>
+                <hr>
+            @endforeach
+        @else
+            <div class="center">No product reviews available yet.</div>      
+        @endif
+    </div>
+
     <a href='/products'>&larr; Return to all products</a>
 @endsection
