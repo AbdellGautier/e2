@@ -207,3 +207,20 @@ a.product-link:hover {
 .center {
     text-align: center;
 }
+
+#product-add {
+    margin: 20px auto;
+    max-width: 75%;
+    background-color: #eee;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+#product-add input[type="text"] {
+    width: 200px;
+    margin: auto;
+}
+
+#product-add textarea {
+    height: 100px;
+}

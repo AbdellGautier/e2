@@ -79,4 +79,51 @@ class ProductsController extends Controller
 
         return $this->app->redirect("/product?sku=" . $sku, ["reviewSaved" => true]);
     }
+
+    public function new()
+    {
+        $productSaved = $this->app->old("productSaved");
+
+        return $this->app->view("Products/new", [
+            "productSaved" => $productSaved
+        ]);
+    }
+
+    public function saveProduct()
+    {
+        $this->app->validate([
+            'name' => 'required',
+            'sku' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'available' => 'required|digit',
+            'weight' => 'required|numeric',
+            'perishable' => 'required'
+        ]);
+
+        // If the above validation checks fail
+        // The user is redirected back to where they came from (/product)
+        // None of the code that follows will be executed
+
+        $name = $this->app->input("name");
+        $sku = $this->app->input("sku");
+        $description = $this->app->input("description");
+        $price = $this->app->input("price");
+        $available = $this->app->input("available");
+        $weight = $this->app->input("weight");
+        $perishable = ($this->app->input("perishable") == true) ? 1: 0; // Convert to DB value
+        $perishableChecked = ($this->app->input("perishable") == true) ? "checked" : "";
+
+        $this->app->db()->insert("products", [
+            "name" => $name,
+            "sku" => $sku,
+            "description" => $description,
+            "price" => $price,
+            "available" => $available,
+            "weight" => $weight,
+            "perishable" => $perishable
+        ]);
+
+        return $this->app->redirect("/products/new", ["productSaved" => true]);
+    }
 }
