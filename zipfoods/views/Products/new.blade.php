@@ -51,7 +51,7 @@
 
         <div class='form-group'>
             <label for='perishable'>Perishable?</label>
-            <input type='checkbox' class='form-check-input' name='perishable' id='perishable' {{ $app->old('perishableChecked') }}'>
+            <input type='checkbox' class='form-check-input' name='perishable' id='perishable' {{ ($app->old("perishable") == true) ? "checked" : "" }}>
         </div>
 
         <button type='submit' class='btn btn-primary'>Add Product</button>

@@ -97,8 +97,7 @@ class ProductsController extends Controller
             'description' => 'required',
             'price' => 'required|numeric',
             'available' => 'required|digit',
-            'weight' => 'required|numeric',
-            'perishable' => 'required'
+            'weight' => 'required|numeric'
         ]);
 
         // If the above validation checks fail
@@ -112,7 +111,6 @@ class ProductsController extends Controller
         $available = $this->app->input("available");
         $weight = $this->app->input("weight");
         $perishable = ($this->app->input("perishable") == true) ? 1: 0; // Convert to DB value
-        $perishableChecked = ($this->app->input("perishable") == true) ? "checked" : "";
 
         $this->app->db()->insert("products", [
             "name" => $name,
@@ -124,6 +122,8 @@ class ProductsController extends Controller
             "perishable" => $perishable
         ]);
 
-        return $this->app->redirect("/products/new", ["productSaved" => true]);
+        return $this->app->redirect("/products/new", [
+            "productSaved" => true
+        ]);
     }
 }
