@@ -7,7 +7,7 @@
 @section('content')
 
     @if ($productSaved)
-        <div class="alert alert-success">Thank you, the new product was added! <a href="/product?sku={{ $sku }}">You can view it here &rarr;</a></div>
+        <div test="new-confirmation" class="alert alert-success">Thank you, the new product was added! <a href="/product?sku={{ $sku }}">You can view it here &rarr;</a></div>
     @endif
 
     @if ($app->errorsExist())
@@ -54,7 +54,7 @@
             <input type='checkbox' class='form-check-input' name='perishable' id='perishable' {{ ($app->old("perishable") == true) ? "checked" : "" }}>
         </div>
 
-        <button type='submit' class='btn btn-primary'>Add Product</button>
+        <button test="add-product-submit-button" type='submit' class='btn btn-primary'>Add Product</button>
     </form>
 
     @if ($app->errorsExist())

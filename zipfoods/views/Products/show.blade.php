@@ -11,7 +11,7 @@
     @endif
 
     @if ($app->errorsExist())
-        <div class='alert alert-danger'>
+        <div test="error-message" class='alert alert-danger'>
             Please correct the errors below
         </div>
     @endif

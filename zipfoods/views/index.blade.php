@@ -14,7 +14,7 @@
     </p>
 
     <p>
-        <a href='/products'>Check out our selection of products...</a>
+        <a test="products-link" href='/products'>Check out our selection of products...</a>
     </p>
 
 @endsection
