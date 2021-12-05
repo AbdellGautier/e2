@@ -83,9 +83,11 @@ class ProductsController extends Controller
     public function new()
     {
         $productSaved = $this->app->old("productSaved");
+        $sku = $this->app->old("sku");
 
         return $this->app->view("Products/new", [
-            "productSaved" => $productSaved
+            "productSaved" => $productSaved,
+            "sku" => $sku
         ]);
     }
 
@@ -93,7 +95,7 @@ class ProductsController extends Controller
     {
         $this->app->validate([
             'name' => 'required',
-            'sku' => 'required',
+            'sku' => 'required|alphaNumericDash',
             'description' => 'required',
             'price' => 'required|numeric',
             'available' => 'required|digit',
@@ -123,7 +125,8 @@ class ProductsController extends Controller
         ]);
 
         return $this->app->redirect("/products/new", [
-            "productSaved" => true
+            "productSaved" => true,
+            "sku" => $this->app->input('sku')
         ]);
     }
 }

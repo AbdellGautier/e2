@@ -7,7 +7,7 @@
 @section('content')
 
     @if ($productSaved)
-        <div class="alert alert-success">Thank you, the new product was added!</div>
+        <div class="alert alert-success">Thank you, the new product was added! <a href="/product?sku={{ $sku }}">You can view it here &rarr;</a></div>
     @endif
 
     @if ($app->errorsExist())
