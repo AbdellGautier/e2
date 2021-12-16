@@ -17,8 +17,8 @@ class AppController extends Controller
      */
     public function play()
     {
-
-        dd($this->app->inputAll());
+        $playerNickname = $this->app->inputAll()["txtPlayerNickname"];
+        $difficulty = $this->app->inputAll()["rdoDifficulty"];
 
         $computerBoard = [];
         $playerBoard = [];
@@ -59,7 +59,11 @@ class AppController extends Controller
             $playerBoard = $computerBoard;
 
             // How many spots does a submarine occupy on each board?
-            $submarineSpots = 5;
+            $submarineSpots = 5; // Default - For easy difficulty
+
+            if ($difficulty == "hard") {
+                $submarineSpots = 1;
+            }
 
             // Place the computer submarine on the computer board
             $computerBoard = $this->placeSubmarine($computerBoard, $submarineSpots);
@@ -147,6 +151,13 @@ class AppController extends Controller
                     $winner = "Player";
                 } elseif (count(array_keys($playerBoard, "H")) == $submarineSpots) {
                     $winner = "Computer";
+                }
+
+                // If we have finished the game?
+                //  .. Save the current state of this game
+                if ($winner != "")
+                {
+                    // Save to the
                 }
 
                 // Update the session with both boards
