@@ -16,7 +16,7 @@
                     <div class="col s6">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="Player_Nickname" name="Player_Nickname" type="text" maxlength="25" class="validate" required>
+                                <input id="Player_Nickname" name="Player_Nickname" test="Player_Nickname" type="text" maxlength="25" class="validate" required>
                                 <label for="Player_Nickname">Player Nickname (for scores)</label>
                                 <span class="helper-text" data-error="Please specify your Nickname (for scorekeeping)."></span>
                             </div>
@@ -27,13 +27,13 @@
                         <div class="row">
                             <div class="col s6">
                                 <label>
-                                    <input name="Difficulty" type="radio" value="Easy" checked />
+                                    <input id="Difficulty" name="Difficulty" test="Difficulty-Easy" type="radio" value="Easy" checked />
                                     <span>Easy - <span class="difficulty-hint">1 Large Submarine</span></span>
                                 </label>
                             </div>
                             <div class="col s6">
                                 <label>
-                                    <input name="Difficulty" type="radio" value="Hard" />
+                                    <input name="Difficulty" type="radio" test="Difficulty-Hard" value="Hard" />
                                     <span>Hard - <span class="difficulty-hint">1 Tiny Submarine Capsule</span></span>
                                 </label>
                             </div>
@@ -62,16 +62,12 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <?php if (strlen($winner) > 0) { ?>
-                        <button class="pushable" name="btnRecords">
-                            <span class="shadow"></span>
-                            <span class="edge"></span>
-                            <span class="front">
-                                <i class="material-icons">refresh</i><br>Play Again
-                            </span>
-                        </button>
-                        <?php } else { ?>
-                        <button class="pushable" name="btnLaunchMissile"
+                        <button
+                            id="btnPlayGame"
+                            type="submit"
+                            test="btnPlayGame"
+                            class="pushable"
+                            name="btnPlayGame"
                             onclick="return validateGameLaunch();">
                             <span class="shadow"></span>
                             <span class="edge"></span>
@@ -79,7 +75,6 @@
                                 <i class="material-icons">videogame_asset</i><br>Play Game
                             </span>
                         </button>
-                        <?php } ?>
                     </div>
                 </div>
                 </form>
@@ -90,13 +85,15 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <button type="submit" class="pushable" onclick="location.href='/games';">
-                            <span class="shadow"></span>
-                            <span class="edge-alternate"></span>
-                            <span class="front-alternate">
-                                <i class="material-icons">schedule</i><br>View Games Played
-                            </span>
-                        </button>
+                        <form action="/games" method="post">
+                            <button id="btnGames" type="submit" test="btnGames" class="pushable">
+                                <span class="shadow"></span>
+                                <span class="edge-alternate"></span>
+                                <span class="front-alternate">
+                                    <i class="material-icons">schedule</i><br>View Games Played
+                                </span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -116,11 +113,9 @@
                 <h5 class="white-text">Instructions</h5>
                 <p class="grey-text text-lighten-4">
                 <ol>
-                    <li>Player and computer each have one submarine, randomly placed.</li>
-                    <li>Select a location on the computer's board (left) and launch the missile</li>
-                    <li>If you hit the computer's submarine, a red mark will appear</li>
-                    <li>The computer will try to hit your submarine (right) as well</li>
-                    <li>The one who hits the entire submarine first win!</li>
+                    <li>Type your nickname, or click on "Give me a funky nickname!".</li>
+                    <li>Select your difficulty level.</li>
+                    <li>Click Play Game</li>
                 </ol>
                 </p>
             </div>

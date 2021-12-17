@@ -174,27 +174,14 @@
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Resources utilized:</h5>
-                <ul>
-                    <li><a  class="grey-text text-lighten-3 underline"
-                            href="https://en.wikipedia.org/wiki/Battleship_(game)"
-                            target="_blank">Inspiration - Battleship game</a></li>
-                    <li><a  class="grey-text text-lighten-3 underline"
-                            href="https://materializecss.com/"
-                            target="_blank">CSS - Materialize</a></li>
-                    <li><a  class="grey-text text-lighten-3 underline"
-                            href="https://cssgradient.io/"
-                            target="_blank">CSS - Gradients</a></li>
-                    <li><a  class="grey-text text-lighten-3 underline"
-                            href="https://codepen.io/ryandsouza13/pen/yEBJQV"
-                            target="_blank">CSS - 3D Text</a></li>
-                    <li><a  class="grey-text text-lighten-3 underline"
-                            href="https://www.joshwcomeau.com/animation/3d-button/"
-                            target="_blank">CSS - 3D Button</a></li>
-                    <li><a  class="grey-text text-lighten-3 underline"
-                            href="https://www.florin-pop.com/blog/2019/03/css-pulse-effect/"
-                            target="_blank">CSS - Pulsating Labels</a></li>
-                </ul>
+                <h5 class="white-text">Game Information</h5>
+                <p class="grey-text text-lighten-4">
+                    <ul>
+                        <li><span class="grey-text text-lighten-1">Player Nickname:</span> <span class="bold">{{ $playerNickname }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Difficulty:</span> <span class="bold">{{ $difficulty }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Game started on:</span> <span class="bold">{{ date('m/d/y  H:i:s A', strtotime($startedOn)) }}</span></li>
+                    </ul>
+                </p>
             </div>
         </div>
     </div>

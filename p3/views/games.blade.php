@@ -13,7 +13,7 @@
                     </div>
                     @if (empty($games) != true)
                         <div class="row">
-                            <div class="col s3 bold">Player Nickname</div>
+                            <div class="col s3 bold left-align">Player Nickname</div>
                             <div class="col s1 bold">Difficulty</div>
                             <div class="col s2 bold">Winner</div>
                             <div class="col s2 bold">View Game</div>
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s3">{{ $game['player_nickname'] }}</div>
+                                <div class="col s3 left-align">{{ $game['player_nickname'] }}</div>
                                 <div class="col s1">
                                     @if ($game['difficulty'] == 'Easy')
                                         <span class="easy smaller">
@@ -96,11 +96,8 @@
                 <h5 class="white-text">Instructions</h5>
                 <p class="grey-text text-lighten-4">
                 <ol>
-                    <li>Player and computer each have one submarine, randomly placed.</li>
-                    <li>Select a location on the computer's board (left) and launch the missile</li>
-                    <li>If you hit the computer's submarine, a red mark will appear</li>
-                    <li>The computer will try to hit your submarine (right) as well</li>
-                    <li>The one who hits the entire submarine first win!</li>
+                    <li>This page shows all games played by everyone.</li>
+                    <li>Click on "View Game" to see how the game ended.</li>
                 </ol>
                 </p>
             </div>

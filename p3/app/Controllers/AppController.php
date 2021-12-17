@@ -41,12 +41,15 @@ class AppController extends Controller
                 // --------------------------------------------------
                 $computerBoard = unserialize($gameDetails[0]["computer_board"]);
                 $playerBoard = unserialize($gameDetails[0]["player_board"]);
-                $winner = $gameDetails[0]["winner"];
 
                 return $this->app->view('gamedetail', [
+                    'playerNickname' => $gameDetails[0]["player_nickname"],
+                    'winner' => $gameDetails[0]["winner"],
+                    'difficulty' => $gameDetails[0]["difficulty"],
                     'computerBoard' => $computerBoard,
                     'playerBoard' => $playerBoard,
-                    'winner' => $winner
+                    'startedOn' => $gameDetails[0]["started_on"],
+                    'endedOn' => $gameDetails[0]["ended_on"],
                 ]);
             }
         }
@@ -115,9 +118,12 @@ class AppController extends Controller
         $_SESSION["submarineSpots"] = $submarineSpots;
 
         return $this->app->view('play', [
+            'playerNickname' => $_SESSION["player_nickname"],
+            'difficulty' => $_SESSION["difficulty"],
+            'startedOn' => $_SESSION["started_on"],
             'computerBoard' => $computerBoard,
             'playerBoard' => $playerBoard,
-            'winner' => $winner
+            'winner' => $winner,
         ]);
     }
 

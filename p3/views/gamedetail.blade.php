@@ -122,15 +122,15 @@
         </div>
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Instructions</h5>
+                <h5 class="white-text">Game Information</h5>
                 <p class="grey-text text-lighten-4">
-                    <ol>
-                        <li>Player and computer each have one submarine, randomly placed.</li>
-                        <li>Select a location on the computer's board (left) and launch the missile</li>
-                        <li>If you hit the computer's submarine, a red mark will appear</li>
-                        <li>The computer will try to hit your submarine (right) as well</li>
-                        <li>The one who hits the entire submarine first win!</li>
-                    </ol>
+                    <ul>
+                        <li><span class="grey-text text-lighten-1">Player Nickname:</span> <span class="bold">{{ $playerNickname }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Difficulty:</span> <span class="bold">{{ $difficulty }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Winner:</span> <span class="bold">{{ $winner }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Game started on:</span> <span class="bold">{{ date('m/d/y  H:i:s A', strtotime($startedOn)) }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Game ended on:</span> <span class="bold">{{ date('m/d/y  H:i:s A', strtotime($endedOn)) }}</span></li>
+                    </ul>
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
