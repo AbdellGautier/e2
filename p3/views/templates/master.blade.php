@@ -23,7 +23,7 @@
 <header>
     <nav>
         <div class="nav-wrapper">
-            <a class="title">{{ $app->config('app.name') }}</a>
+            <a class="title" href="/">{{ $app->config('app.name') }}</a>
         </div>
     </nav>
 </header>

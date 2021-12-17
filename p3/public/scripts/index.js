@@ -1,7 +1,32 @@
+function getFunkyNickname() {
+    // Define our funky nicknames
+    let funkyNicknames = [
+        "Thornuts", "2SlowBut2Furious", "MarvelousMarvel", "Catman", "LemonyTilapia", "FlyingTurtly", "Aragonaut",
+        "TinyBotiBot", "MrJingles", "Othello", "AlienInterceptor", "TheProtector", "DanielSan", "TDLemons",
+        "MonasticMonk", "UnluckyCharms", "CocoChoco", "SpaceBowler", "SmurfsfySlushie", "IceColdSurfer"];
+
+    // Grab a reference to the Nickname field
+    let Player_Nickname = document.getElementById("Player_Nickname");
+
+    while (true) {
+        // Obtain a random funky nickname
+        let randomNickname = funkyNicknames[Math.floor(Math.random() * funkyNicknames.length)];
+
+        // Avoid placing the same existing nickname
+        if (Player_Nickname.value != randomNickname) {
+            Player_Nickname.value = randomNickname;
+            Player_Nickname.focus();
+
+            // Exit the loop
+            break;
+        }
+    }
+}
+
 function validateGameLaunch() {
 
-    // Reference all of our target radio buttons
-    var txtPlayerNickname = document.getElementsByName('txtPlayerNickname');
+    // Grab a reference to the Nickname field
+    var Player_Nickname = document.getElementsByName('Player_Nickname');
 
     // Check if we the form is valid before starting a new game
     if (txtPlayerNickname.value != "" && rdoDifficulty.checked) {

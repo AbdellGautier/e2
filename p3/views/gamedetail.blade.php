@@ -5,101 +5,50 @@
     <div class="container">
         <div class="row">
             <div class="col s5 center">
-                <form method="POST" action="/launchmissile">
-                    <div class="center">
-                        <div class="row">
-                            <div class="col s12">
-                                <?php if ($winner == "Player") { ?>
-                                    <h2 class="bold winner">Computer Submarine Region (Winner: Player)</h2>
-                                <?php } elseif ($winner == "Tie") { ?>
-                                    <h2 class="bold tie">Computer Submarine Region (Tie: Player)</h2>
-                                <?php } else { ?>
-                                    <h2 class="bold">Computer Submarine Region</h2>
-                                <?php } ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s3"></div>
-                            <?php foreach (range('A', 'H') as $letter) { ?>
-                                <div class="col s1 option"><?php echo $letter; ?></div>
+                <div class="center">
+                    <div class="row">
+                        <div class="col s12">
+                            <?php if ($winner == "Player") { ?>
+                                <h2 class="bold winner">Computer Submarine Region (Winner: Player)</h2>
+                            <?php } elseif ($winner == "Tie") { ?>
+                                <h2 class="bold tie">Computer Submarine Region (Tie: Player)</h2>
+                            <?php } else { ?>
+                                <h2 class="bold">Computer Submarine Region</h2>
                             <?php } ?>
                         </div>
-                        <?php for ($i = 1; $i <= 8; $i++) { ?>
-                            <div class="row">
-                                <div class="col s3"><?php echo $i; ?></div>
-                                <?php foreach (range('A', 'H') as $letter) { ?>
-                                    <?php if ($computerBoard[$letter . $i] == "H") { ?>
-                                        <div class="col s1 option sub-hit">
-                                            <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
-                                        </div>
-                                    <?php } else if ($computerBoard[$letter . $i] == "M") { ?>
-                                        <div class="col s1 option miss">
-                                            <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="col s1 option">
-                                            <label><input type="radio" name="CB" value="<?php echo $letter . $i; ?>"><span></span></label>
-                                        </div>
-                                    <?php } ?>
-                                <?php } ?>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s3"></div>
+                        <?php foreach (range('A', 'H') as $letter) { ?>
+                            <div class="col s1 option"><?php echo $letter; ?></div>
                         <?php } ?>
                     </div>
-                    <div class="row">
-                        <div class="col s12 center">
-                            &nbsp;
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 center">
-                            <?php if (!empty($winner)) { ?>
-                                <button class="pushable" name="btnPlayAgain">
-                                    <span class="shadow"></span>
-                                    <span class="edge"></span>
-                                    <span class="front">
-                                        <i class="material-icons">refresh</i><br>Play Again
-                                    </span>
-                                </button>
-                            <?php } else { ?>
-                                <button class="pushable" name="btnLaunchMissile" onclick="return validateMissileLaunch();">
-                                    <span class="shadow"></span>
-                                    <span class="edge"></span>
-                                    <span class="front">
-                                        <i class="material-icons">arrow_upward</i><br>Launch Missile
-                                    </span>
-                                </button>
+                    <?php for ($i = 1; $i <= 8; $i++) { ?>
+                        <div class="row">
+                            <div class="col s3"><?php echo $i; ?></div>
+                            <?php foreach (range('A', 'H') as $letter) { ?>
+                                <?php if ($computerBoard[$letter . $i] == "H") { ?>
+                                    <div class="col s1 option sub-hit">
+                                        <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
+                                    </div>
+                                <?php } else if ($computerBoard[$letter . $i] == "M") { ?>
+                                    <div class="col s1 option miss">
+                                        <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="col s1 option">
+                                        <label><input type="radio" name="CB"  disabled="disabled" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                    </div>
+                                <?php } ?>
                             <?php } ?>
                         </div>
+                    <?php } ?>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        &nbsp;
                     </div>
-                    <div class="row">
-                        <div class="col s12 center">
-                            &nbsp;
-                        </div>
-                    </div>
-                </form>
-                <form method="POST" action="/abandon">
-                    <div class="row">
-                        <div class="col s12 center">
-                            @if (!empty($winner))
-                                <button type="submit" class="pushable">
-                                    <span class="shadow"></span>
-                                    <span class="edge-alternate"></span>
-                                    <span class="front-alternate">
-                                        <i class="material-icons">arrow_upward</i><br>Exit Game
-                                    </span>
-                                </button>
-                            @else
-                                <button type="submit" class="pushable">
-                                    <span class="shadow"></span>
-                                    <span class="edge-alternate"></span>
-                                    <span class="front-alternate">
-                                        <i class="material-icons">flag</i><br>Abandon Game
-                                    </span>
-                                </button>
-                            @endif
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
             <div class="col s2">
                 <div class="vertical-line"></div>
@@ -148,6 +97,17 @@
                         </div>
                     <?php } ?>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 center">
+                <button class="pushable" onclick="location.href='/games';">
+                    <span class="shadow"></span>
+                    <span class="edge-alternate"></span>
+                    <span class="front-alternate">
+                        <i class="material-icons">arrow_back</i><br>Go Back to Games Played
+                    </span>
+                </button>
             </div>
         </div>
     </div>

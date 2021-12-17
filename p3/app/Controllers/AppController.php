@@ -4,85 +4,115 @@ namespace App\Controllers;
 
 class AppController extends Controller
 {
-    /**
-     * This method is triggered by the route "/"
-     */
     public function index()
     {
         return $this->app->view('index', ["winner" => ""]);
     }
 
-    /**
-     * This method is triggered by the route "/"
-     */
+    public function notfound()
+    {
+        return $this->app->view('notfound');
+    }
+
+    public function games()
+    {
+        $games = $this->app->db()->all('rounds');
+
+        return $this->app->view('games', ["games" => $games]);
+    }
+
+    public function gamedetail()
+    {
+        // Ensure that we get the QueryString game id value
+        if (!empty($this->app->param("gid"))) {
+
+            // Get the detailed game information
+            $gameDetails = $this->app->db()->findByColumn("rounds", "id", "=", $this->app->param("gid"));
+
+            // Did we obtain an existing game?
+            if (empty($gameDetails)) {
+                return $this->app->view('notfound');
+            } else {
+                // Unserialize the boards arrays
+                // --------------------------------------------------
+                // Its not a good practice to store the arrays in the
+                // db, but it made my life easier for this assignment
+                // =)
+                // --------------------------------------------------
+                $computerBoard = unserialize($gameDetails[0]["computer_board"]);
+                $playerBoard = unserialize($gameDetails[0]["player_board"]);
+                $winner = $gameDetails[0]["winner"];
+
+                return $this->app->view('gamedetail', [
+                    'computerBoard' => $computerBoard,
+                    'playerBoard' => $playerBoard,
+                    'winner' => $winner
+                ]);
+            }
+        }
+    }
+
     public function play()
     {
-        $playerNickname = $this->app->inputAll()["txtPlayerNickname"];
-        $difficulty = $this->app->inputAll()["rdoDifficulty"];
+        $this->app->validate([
+            'Player_Nickname' => 'required|minLength:3|maxLength:25',
+            'Difficulty' => 'required'
+        ]);
+
+        $_SESSION["player_nickname"] = $this->app->input("Player_Nickname");
+        $_SESSION["difficulty"] = $this->app->input("Difficulty");
+
+        // Keep track of when the game started
+        $_SESSION["started_on"] = date('Y-m-d H:i:s');
 
         $computerBoard = [];
         $playerBoard = [];
         $winner = "";
 
-        // Check if this is the first time playing the game
-        if (
-            empty($_SESSION["computerBoard"]) ||
-            empty($_SESSION["playerBoard"]) ||
-            !empty($_SESSION["playAgain"])
-        ) {
+        // Clear the Play Again flag
+        $_SESSION["playAgain"] = null;
 
-            // Clear the Play Again flag
-            $_SESSION["playAgain"] = null;
+        // ---------------------------------------------------------------------
+        // Will hold the Computer's submarine board spaces and moves. This
+        // is where the player interact by selecting and launching missiles to.
+        //
+        // Guidance: Any key in here can have the following values:
+        //           S = Submarine Present
+        //           M = Miss
+        //           H = Submarine Hit
+        // ---------------------------------------------------------------------
+        $computerBoard = [
+            "A1" => "", "A2" => "", "A3" => "", "A4" => "", "A5" => "", "A6" => "", "A7" => "", "A8" => "",
+            "B1" => "", "B2" => "", "B3" => "", "B4" => "", "B5" => "", "B6" => "", "B7" => "", "B8" => "",
+            "C1" => "", "C2" => "", "C3" => "", "C4" => "", "C5" => "", "C6" => "", "C7" => "", "C8" => "",
+            "D1" => "", "D2" => "", "D3" => "", "D4" => "", "D5" => "", "D6" => "", "D7" => "", "D8" => "",
+            "E1" => "", "E2" => "", "E3" => "", "E4" => "", "E5" => "", "E6" => "", "E7" => "", "E8" => "",
+            "F1" => "", "F2" => "", "F3" => "", "F4" => "", "F5" => "", "F6" => "", "F7" => "", "F8" => "",
+            "G1" => "", "G2" => "", "G3" => "", "G4" => "", "G5" => "", "G6" => "", "G7" => "", "G8" => "",
+            "H1" => "", "H2" => "", "H3" => "", "H4" => "", "H5" => "", "H6" => "", "H7" => "", "H8" => ""
+        ];
 
-            // ---------------------------------------------------------------------
-            // Will hold the Computer's submarine board spaces and moves. This
-            // is where the player interact by selecting and launching missiles to.
-            // 
-            // Guidance: Any key in here can have the following values:
-            //           S = Submarine Present
-            //           M = Miss
-            //           H = Submarine Hit
-            // ---------------------------------------------------------------------
-            $computerBoard = [
-                "A1" => "", "A2" => "", "A3" => "", "A4" => "", "A5" => "", "A6" => "", "A7" => "", "A8" => "",
-                "B1" => "", "B2" => "", "B3" => "", "B4" => "", "B5" => "", "B6" => "", "B7" => "", "B8" => "",
-                "C1" => "", "C2" => "", "C3" => "", "C4" => "", "C5" => "", "C6" => "", "C7" => "", "C8" => "",
-                "D1" => "", "D2" => "", "D3" => "", "D4" => "", "D5" => "", "D6" => "", "D7" => "", "D8" => "",
-                "E1" => "", "E2" => "", "E3" => "", "E4" => "", "E5" => "", "E6" => "", "E7" => "", "E8" => "",
-                "F1" => "", "F2" => "", "F3" => "", "F4" => "", "F5" => "", "F6" => "", "F7" => "", "F8" => "",
-                "G1" => "", "G2" => "", "G3" => "", "G4" => "", "G5" => "", "G6" => "", "G7" => "", "G8" => "",
-                "H1" => "", "H2" => "", "H3" => "", "H4" => "", "H5" => "", "H6" => "", "H7" => "", "H8" => ""
-            ];
+        // Make a copy of the computer board for the player,
+        // to avoid making the same associative array again
+        $playerBoard = $computerBoard;
 
-            // Make a copy of the computer board for the player,
-            // to avoid making the same associative array again
-            $playerBoard = $computerBoard;
+        // How many spots does a submarine occupy on each board?
+        $submarineSpots = 5; // Default - For easy difficulty
 
-            // How many spots does a submarine occupy on each board?
-            $submarineSpots = 5; // Default - For easy difficulty
-
-            if ($difficulty == "hard") {
-                $submarineSpots = 1;
-            }
-
-            // Place the computer submarine on the computer board
-            $computerBoard = $this->placeSubmarine($computerBoard, $submarineSpots);
-
-            // Place the player submarine on the player board
-            $playerBoard = $this->placeSubmarine($playerBoard, $submarineSpots);
-
-            // Place the initial state of the game in the session
-            $_SESSION["computerBoard"] = $computerBoard;
-            $_SESSION["playerBoard"] = $playerBoard;
-            $_SESSION["submarineSpots"] = $submarineSpots;
-        } else {
-            // Get the current state of the game from the session
-            $computerBoard = $_SESSION["computerBoard"];
-            $playerBoard = $_SESSION["playerBoard"];
-
-            // In case the user refresh the page
-            $winner = $_SESSION["winner"] ?? "";
+        if ($_SESSION["difficulty"] == "Hard") {
+            $submarineSpots = 1;
         }
+
+        // Place the computer submarine on the computer board
+        $computerBoard = $this->placeSubmarine($computerBoard, $submarineSpots);
+
+        // Place the player submarine on the player board
+        $playerBoard = $this->placeSubmarine($playerBoard, $submarineSpots);
+
+        // Place the initial state of the game in the session
+        $_SESSION["computerBoard"] = $computerBoard;
+        $_SESSION["playerBoard"] = $playerBoard;
+        $_SESSION["submarineSpots"] = $submarineSpots;
 
         return $this->app->view('play', [
             'computerBoard' => $computerBoard,
@@ -106,6 +136,9 @@ class AppController extends Controller
                 $_SESSION["playerBoard"] = null;
                 $_SESSION["computerBoard"] = null;
                 $_SESSION["winner"] = "";
+
+                // Start a new game
+                $this->app->redirect("/play");
             } elseif (
                 isset($_POST['btnLaunchMissile']) &&
                 !empty($_SESSION["playerBoard"]) &&
@@ -153,11 +186,19 @@ class AppController extends Controller
                     $winner = "Computer";
                 }
 
-                // If we have finished the game?
-                //  .. Save the current state of this game
-                if ($winner != "")
-                {
-                    // Save to the
+                // Do we have finished the game?
+                // If so, save the current state of this game
+                if ($winner != "") {
+                    // Save the full snapshot of the game ending to the db
+                    $this->app->db()->insert('rounds', [
+                        'player_nickname' => $_SESSION["player_nickname"],
+                        'difficulty' => $_SESSION["difficulty"],
+                        'winner' => $winner,
+                        'player_board' => serialize($playerBoard),
+                        'computer_board' => serialize($computerBoard),
+                        'started_on' => $_SESSION["started_on"],
+                        'ended_on' => date('Y-m-d H:i:s')
+                    ]);
                 }
 
                 // Update the session with both boards
@@ -258,8 +299,10 @@ class AppController extends Controller
         return $board;
     }
 
+    // ----------------------------------------
     // Determines the computer's choice (spot)
     // for attacking the Player's board.
+    // ----------------------------------------
     private function getComputerMissileTarget($playerBoardFreeSpots)
     {
         $sendMissileToSpot = array_rand($playerBoardFreeSpots, 1);
@@ -267,8 +310,10 @@ class AppController extends Controller
         return $sendMissileToSpot;
     }
 
+    // ----------------------------------------
     // Update the player's or computer's board, 
     // based on the missile target specified.
+    // ----------------------------------------
     private function updateBoard($board, $missileSentTo)
     {
         // Did it hit a submarine spot in the board?

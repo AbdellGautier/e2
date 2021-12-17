@@ -2,7 +2,7 @@
 
 namespace App\Commands;
 
-use App\Rounds;
+use App\Games;
 
 class AppCommand extends Command
 {
@@ -15,9 +15,9 @@ class AppCommand extends Command
     public function migrate()
     {
         $this->app->db()->createTable('rounds', [
-            'player_nickname' => 'varchar(50)',
-            'difficulty' => 'varchar(25)',
-            'winner' => 'varchar(25)',
+            'player_nickname' => 'varchar(25)',
+            'difficulty' => 'varchar(10)',
+            'winner' => 'varchar(10)',
             'player_board' => 'varchar(5000)',
             'computer_board' => 'varchar(5000)',
             'started_on' => 'datetime',
@@ -29,7 +29,7 @@ class AppCommand extends Command
 
     public function seedRounds()
     {
-        $rounds = new Rounds($this->app->path('database/rounds.json'));
+        $rounds = new Games($this->app->path('database/rounds.json'));
 
         foreach ($rounds->getAll() as $round) {
 
