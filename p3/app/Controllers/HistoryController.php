@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 class HistoryController extends Controller
 {
+    // Handles the History page
     public function history()
     {
         // Obtain the game history from the database
@@ -12,12 +13,13 @@ class HistoryController extends Controller
         return $this->app->view('history', ["games" => $games]);
     }
 
+    // Shows the round details
     public function round()
     {
-        // Ensure that we get the QueryString game id value
+        // Ensure that we get the QueryString round id value
         if (!empty($this->app->param("id"))) {
 
-            // Get the detailed game information from the database
+            // Get the detailed round information from the database
             $gameDetails = $this->app->db()->findByColumn("rounds", "id", "=", $this->app->param("id"));
 
             // Did we obtain an existing game?

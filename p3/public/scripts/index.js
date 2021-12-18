@@ -1,4 +1,6 @@
+// Generates a random funky nickname for the Home page's use
 function getFunkyNickname() {
+
     // Define our funky nicknames
     let funkyNicknames = [
         "Thornuts", "2SlowBut2Furious", "MarvelousMarvel", "Catman", "LemonyTilapia", "FlyingTurtly", "Aragonaut",
@@ -24,13 +26,14 @@ function getFunkyNickname() {
     }
 }
 
+// Validation of Home page's form fields
 function validateGameLaunch() {
 
     // Grab a reference to the Nickname field
     var Player_Nickname = document.getElementsByName('Player_Nickname');
 
     // Check if we the form is valid before starting a new game
-    if (txtPlayerNickname.value != "" && rdoDifficulty.checked) {
+    if (Player_Nickname.value != "" && rdoDifficulty.checked) {
         return true;
     }
 
@@ -41,6 +44,7 @@ function validateGameLaunch() {
     return false;
 }
 
+// Ensure that a spot/radiobutton is selected before launching a missile
 function validateMissileLaunch() {
 
     // Reference all of our target radio buttons

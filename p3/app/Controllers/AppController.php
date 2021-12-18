@@ -4,18 +4,22 @@ namespace App\Controllers;
 
 class AppController extends Controller
 {
+    // Handles the Home page
     public function index()
     {
         return $this->app->view('index', ["winner" => ""]);
     }
 
+    // Handles the Not Found page
     public function notfound()
     {
         return $this->app->view('notfound');
     }
 
+    // Kick-off a new game
     public function startGame()
     {
+        // Do we have form validation issues?
         $this->app->validate([
             'Player_Nickname' => 'required|minLength:3|maxLength:25',
             'Difficulty' => 'required'
@@ -24,9 +28,11 @@ class AppController extends Controller
         $_SESSION["player_nickname"] = $this->app->input("Player_Nickname");
         $_SESSION["difficulty"] = $this->app->input("Difficulty");
 
+        // Lets begin the actual game
         $this->play();
     }
 
+    // Starts the actual game
     public function play()
     {
         // Clear the Play Again flag
@@ -90,6 +96,7 @@ class AppController extends Controller
         ]);
     }
 
+    // Process the launch missile event
     public function launchMissile()
     {
         // Do we have posted data?

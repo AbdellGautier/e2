@@ -8,12 +8,14 @@ class AppCommand extends Command
 {
     public function fresh()
     {
+        // Create our table and insert initial data
         $this->migrate();
         $this->seedRounds();
     }
 
     public function migrate()
     {
+        // Create our rounds table
         $this->app->db()->createTable('rounds', [
             'player_nickname' => 'varchar(25)',
             'difficulty' => 'varchar(10)',
@@ -33,12 +35,10 @@ class AppCommand extends Command
 
         foreach ($rounds->getAll() as $round) {
 
-            # Don’t need ID - that will get automatically added
+            # Don’t need id
             unset($round['id']);
 
-            // $round['player_board'] = $round['player_board'] ? 1 : 0;
-
-            # Insert round
+            # Insert round into the db > rounds table
             $this->app->db()->insert('rounds', $round);
         }
 

@@ -179,7 +179,7 @@
                     <ul>
                         <li><span class="grey-text text-lighten-1">Player Nickname:</span> <span class="bold">{{ $playerNickname }}</span></li>
                         <li><span class="grey-text text-lighten-1">Difficulty:</span> <span class="bold">{{ $difficulty }}</span></li>
-                        <li><span class="grey-text text-lighten-1">Game started on:</span> <span class="bold">{{ date('m/d/y  H:i:s A', strtotime($startedOn)) }}</span></li>
+                        <li><span class="grey-text text-lighten-1">Game started on:</span> <span class="bold">{{ date('m/d/y  h:i:s A', strtotime($startedOn)) }}</span></li>
                     </ul>
                 </p>
             </div>
