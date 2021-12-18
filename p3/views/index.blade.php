@@ -7,10 +7,10 @@
             <div class="col s12 center">
                 <div class="row">
                     <div class="col s12">
-                        <h2 class="bold">Can you sink the enemy submarines first?</h2>
+                        <h2 class="bold">Can you sink the enemy submarine first?</h2>
                     </div>
                 </div>
-                <form method="POST" action="/play">
+                <form method="POST" action="/start">
                 <div class="row">
                     <div class="col s3"></div>
                     <div class="col s6">
@@ -21,20 +21,20 @@
                                 <span class="helper-text" data-error="Please specify your Nickname (for scorekeeping)."></span>
                             </div>
                             <div class="input-field col s6 valign-wrapper">
-                                <a class="underline" href="javascript:void(0)" onclick="getFunkyNickname();">&larr;&nbsp;Give me a funky nickname!</a>
+                                &lsaquo;&nbsp;<a class="underline" href="javascript:void(0)" onclick="getFunkyNickname();">Give me a funky nickname!</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s6">
                                 <label>
                                     <input id="Difficulty" name="Difficulty" test="Difficulty-Easy" type="radio" value="Easy" checked />
-                                    <span>Easy - <span class="difficulty-hint">1 Large Submarine</span></span>
+                                    <span class="rdo-home">Easy &rsaquo;&nbsp;<span class="difficulty-hint">Large Submarine</span></span>
                                 </label>
                             </div>
                             <div class="col s6">
                                 <label>
                                     <input name="Difficulty" type="radio" test="Difficulty-Hard" value="Hard" />
-                                    <span>Hard - <span class="difficulty-hint">1 Tiny Submarine Capsule</span></span>
+                                    <span class="rdo-home">Hard &rsaquo;&nbsp;<span class="difficulty-hint">Tiny Submarine</span></span>
                                 </label>
                             </div>
                         </div>
@@ -85,12 +85,12 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center">
-                        <form action="/games" method="post">
-                            <button id="btnGames" type="submit" test="btnGames" class="pushable">
+                        <form action="/history" method="post">
+                            <button id="btnGameHistory" type="submit" test="btnGameHistory" class="pushable">
                                 <span class="shadow"></span>
                                 <span class="edge-alternate"></span>
                                 <span class="front-alternate">
-                                    <i class="material-icons">schedule</i><br>View Games Played
+                                    <i class="material-icons">schedule</i><br>View Game History
                                 </span>
                             </button>
                         </form>

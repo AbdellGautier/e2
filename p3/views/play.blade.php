@@ -5,45 +5,45 @@
     <div class="container">
         <div class="row">
             <div class="col s5 center">
-                <form method="POST" action="/launchmissile">
+                <form method="POST" action="/launch-missile">
                     <div class="center">
                         <div class="row">
                             <div class="col s12">
-                                <?php if ($winner == "Player") { ?>
+                                @if ($winner == "Player")
                                     <h2 class="bold winner">Computer Submarine Region (Winner: Player)</h2>
-                                <?php } elseif ($winner == "Tie") { ?>
+                                @elseif ($winner == "Tie")
                                     <h2 class="bold tie">Computer Submarine Region (Tie: Player)</h2>
-                                <?php } else { ?>
+                                @else
                                     <h2 class="bold">Computer Submarine Region</h2>
-                                <?php } ?>
+                                @endif
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s3"></div>
-                            <?php foreach (range('A', 'H') as $letter) { ?>
-                                <div class="col s1 option"><?php echo $letter; ?></div>
-                            <?php } ?>
+                            @foreach (range('A', 'H') as $letter)
+                                <div class="col s1 option">{{ $letter }}</div>
+                            @endforeach
                         </div>
-                        <?php for ($i = 1; $i <= 8; $i++) { ?>
+                        @for ($i = 1; $i <= 8; $i++)
                             <div class="row">
-                                <div class="col s3"><?php echo $i; ?></div>
-                                <?php foreach (range('A', 'H') as $letter) { ?>
-                                    <?php if ($computerBoard[$letter . $i] == "H") { ?>
+                                <div class="col s3">{{ $i }}</div>
+                                @foreach (range('A', 'H') as $letter)
+                                    @if ($computerBoard[$letter . $i] == "H")
                                         <div class="col s1 option sub-hit">
                                             <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
                                         </div>
-                                    <?php } else if ($computerBoard[$letter . $i] == "M") { ?>
+                                    @elseif ($computerBoard[$letter . $i] == "M")
                                         <div class="col s1 option miss">
                                             <label><input type="radio" name="CB" disabled="disabled"><span></span></label>
                                         </div>
-                                    <?php } else { ?>
+                                    @else
                                         <div class="col s1 option">
-                                            <label><input type="radio" name="CB" value="<?php echo $letter . $i; ?>"><span></span></label>
+                                            <label><input type="radio" name="CB" value="{{ $letter . $i }}"><span></span></label>
                                         </div>
-                                    <?php } ?>
-                                <?php } ?>
+                                    @endif
+                                @endforeach
                             </div>
-                        <?php } ?>
+                        @endfor
                     </div>
                     <div class="row">
                         <div class="col s12 center">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12 center">
-                            <?php if (!empty($winner)) { ?>
+                            @if (!empty($winner))
                                 <button class="pushable" name="btnPlayAgain">
                                     <span class="shadow"></span>
                                     <span class="edge"></span>
@@ -60,15 +60,15 @@
                                         <i class="material-icons">refresh</i><br>Play Again
                                     </span>
                                 </button>
-                            <?php } else { ?>
-                                <button class="pushable" name="btnLaunchMissile" onclick="return validateMissileLaunch();">
+                            @else
+                                <button test="btnLaunchMissile" class="pushable" name="btnLaunchMissile" onclick="return validateMissileLaunch();">
                                     <span class="shadow"></span>
                                     <span class="edge"></span>
                                     <span class="front">
                                         <i class="material-icons">arrow_upward</i><br>Launch Missile
                                     </span>
                                 </button>
-                            <?php } ?>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
@@ -77,29 +77,29 @@
                         </div>
                     </div>
                 </form>
-                <form method="POST" action="/abandon">
-                    <div class="row">
-                        <div class="col s12 center">
-                            @if (!empty($winner))
-                                <button type="submit" class="pushable">
-                                    <span class="shadow"></span>
-                                    <span class="edge-alternate"></span>
-                                    <span class="front-alternate">
-                                        <i class="material-icons">arrow_upward</i><br>Exit Game
-                                    </span>
-                                </button>
-                            @else
-                                <button type="submit" class="pushable">
-                                    <span class="shadow"></span>
-                                    <span class="edge-alternate"></span>
-                                    <span class="front-alternate">
-                                        <i class="material-icons">flag</i><br>Abandon Game
-                                    </span>
-                                </button>
-                            @endif
-                        </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <form method="POST" action="/abandon">
+                        @if (!empty($winner))
+                            <button id="btnExitGame" test="btnExitGame" type="submit" class="pushable">
+                                <span class="shadow"></span>
+                                <span class="edge-alternate"></span>
+                                <span class="front-alternate">
+                                    <i class="material-icons">arrow_upward</i><br>Exit Game
+                                </span>
+                            </button>
+                        @else
+                            <button id="btnAbandonGame" test="btnAbandonGame" type="submit" class="pushable">
+                                <span class="shadow"></span>
+                                <span class="edge-alternate"></span>
+                                <span class="front-alternate">
+                                    <i class="material-icons">flag</i><br>Abandon Game
+                                </span>
+                            </button>
+                        @endif
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="col s2">
                 <div class="vertical-line"></div>
@@ -108,45 +108,45 @@
                 <div class="center">
                     <div class="row">
                         <div class="col s12">
-                            <?php if ($winner == "Computer") { ?>
+                            @if ($winner == "Computer")
                                 <h2 class="bold winner">Player Submarine Region (Winner: Computer)</h2>
-                            <?php } elseif ($winner == "Tie") { ?>
+                            @elseif ($winner == "Tie")
                                 <h2 class="bold tie">Player Submarine Region (Tie: Computer)</h2>
-                            <?php } else { ?>
+                            @else
                                 <h2 class="bold">Player Submarine Region</h2>
-                            <?php } ?>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
                     <div class="col s3"></div>
-                        <?php foreach (range('A', 'H') as $letter) { ?>
-                            <div class="col s1 option"><?php echo $letter; ?></div>
-                        <?php } ?>
+                        @foreach (range('A', 'H') as $letter)
+                            <div class="col s1 option">{{ $letter }}</div>
+                        @endforeach
                     </div>
-                    <?php for ($i = 1; $i <= 8; $i++) { ?>
+                    @for ($i = 1; $i <= 8; $i++)
                         <div class="row">
-                            <div class="col s3"><?php echo $i; ?></div>
-                            <?php foreach (range('A', 'H') as $letter) { ?>
-                                <?php if ($playerBoard[$letter . $i] == "S") { ?>
+                            <div class="col s3">{{ $i }}</div>
+                            @foreach (range('A', 'H') as $letter)
+                                @if ($playerBoard[$letter . $i] == "S")
                                     <div class="col s1 option sub-present">
                                         <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                     </div>
-                                <?php } elseif ($playerBoard[$letter . $i] == "H") { ?>
+                                @elseif ($playerBoard[$letter . $i] == "H")
                                     <div class="col s1 option sub-hit">
                                         <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                     </div>
-                                <?php } else if ($playerBoard[$letter . $i] == "M") { ?>
+                                @elseif ($playerBoard[$letter . $i] == "M")
                                     <div class="col s1 option miss">
                                         <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                     </div>
-                                <?php } else { ?>
+                                @else
                                     <div class="col s1 option">
                                         <label><input class="no-pointer" type="radio" name="PB" disabled="disabled"><span></span></label>
                                     </div>
-                                <?php } ?>
-                            <?php } ?>
+                                @endif
+                            @endforeach
                         </div>
-                    <?php } ?>
+                    @endfor
                 </div>
             </div>
         </div>

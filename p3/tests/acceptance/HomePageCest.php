@@ -10,7 +10,7 @@ class HomePageCest
         # Act
         $I->amOnPage("/");
 
-        # Assert the correct game title
+        # Assert the correct page title
         $I->seeInTitle("Submarine Attack");
 
         # Assert the existence of the Instructions heading
@@ -20,7 +20,7 @@ class HomePageCest
         $I->seeElement("#Player_Nickname");
         $I->seeElement("#Difficulty");
         $I->seeElement("#btnPlayGame");
-        $I->seeElement("#btnGames");
+        $I->seeElement("#btnGameHistory");
     }
 
     /**
@@ -48,7 +48,38 @@ class HomePageCest
         $I->amOnPage("/");
 
         # Assert ability to view games played
-        $I->click("[test=btnGames]");
+        $I->click("[test=btnGameHistory]");
+
+        # Assert that we see valid Games History contents
+        $I->see("This page shows all games played by everyone.");
+    }
+
+    /**
+     * Test that form validation works and error messages are in place
+     */
+    public function pageValidationWorks(AcceptanceTester $I)
+    {
+        # Act
+        $I->amOnPage("/");
+
+        # Assert ability to enter the nickname
+        $nickname = "BubbleBobbyTheTester";
+        $I->fillField("[test=Player_Nickname]", $nickname);
+
+        # Assert ability to select hard difficulty
+        $I->click("[test=Difficulty-Hard]");
+
+        # Assert ability to begin the game
+        $I->click("[test=btnPlayGame]");
+
+        # Assert the existence of the nickname in the game itself
+        $I->see($nickname);
+
+        # Act
+        $I->amOnPage("/");
+
+        # Assert ability to view games played
+        $I->click("[test=btnGameHistory]");
 
         # Assert that we see valid Games History contents
         $I->see("This page shows all games played by everyone.");

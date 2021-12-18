@@ -14,48 +14,7 @@ class AppController extends Controller
         return $this->app->view('notfound');
     }
 
-    public function games()
-    {
-        $games = $this->app->db()->all('rounds');
-
-        return $this->app->view('games', ["games" => $games]);
-    }
-
-    public function gamedetail()
-    {
-        // Ensure that we get the QueryString game id value
-        if (!empty($this->app->param("gid"))) {
-
-            // Get the detailed game information
-            $gameDetails = $this->app->db()->findByColumn("rounds", "id", "=", $this->app->param("gid"));
-
-            // Did we obtain an existing game?
-            if (empty($gameDetails)) {
-                return $this->app->view('notfound');
-            } else {
-                // Unserialize the boards arrays
-                // --------------------------------------------------
-                // Its not a good practice to store the arrays in the
-                // db, but it made my life easier for this assignment
-                // =)
-                // --------------------------------------------------
-                $computerBoard = unserialize($gameDetails[0]["computer_board"]);
-                $playerBoard = unserialize($gameDetails[0]["player_board"]);
-
-                return $this->app->view('gamedetail', [
-                    'playerNickname' => $gameDetails[0]["player_nickname"],
-                    'winner' => $gameDetails[0]["winner"],
-                    'difficulty' => $gameDetails[0]["difficulty"],
-                    'computerBoard' => $computerBoard,
-                    'playerBoard' => $playerBoard,
-                    'startedOn' => $gameDetails[0]["started_on"],
-                    'endedOn' => $gameDetails[0]["ended_on"],
-                ]);
-            }
-        }
-    }
-
-    public function play()
+    public function startGame()
     {
         $this->app->validate([
             'Player_Nickname' => 'required|minLength:3|maxLength:25',
@@ -65,15 +24,19 @@ class AppController extends Controller
         $_SESSION["player_nickname"] = $this->app->input("Player_Nickname");
         $_SESSION["difficulty"] = $this->app->input("Difficulty");
 
+        $this->play();
+    }
+
+    public function play()
+    {
+        // Clear the Play Again flag
+        $_SESSION["playAgain"] = null;
+
         // Keep track of when the game started
         $_SESSION["started_on"] = date('Y-m-d H:i:s');
 
-        $computerBoard = [];
-        $playerBoard = [];
+        // Clear the winner indicator
         $winner = "";
-
-        // Clear the Play Again flag
-        $_SESSION["playAgain"] = null;
 
         // ---------------------------------------------------------------------
         // Will hold the Computer's submarine board spaces and moves. This
@@ -100,7 +63,7 @@ class AppController extends Controller
         $playerBoard = $computerBoard;
 
         // How many spots does a submarine occupy on each board?
-        $submarineSpots = 5; // Default - For easy difficulty
+        $submarineSpots = 5; // Default, large submarine, for easy difficulty
 
         if ($_SESSION["difficulty"] == "Hard") {
             $submarineSpots = 1;
@@ -127,24 +90,16 @@ class AppController extends Controller
         ]);
     }
 
-    public function launchmissile()
+    public function launchMissile()
     {
         // Do we have posted data?
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+            
             if (isset($_POST['btnPlayAgain'])) {
                 // -------------------------------------------------
-                // Indicate that we want to play again
-                // -------------------------------------------------
-                $_SESSION["playAgain"] = true;
-
-                // Clear any lingering session values
-                $_SESSION["playerBoard"] = null;
-                $_SESSION["computerBoard"] = null;
-                $_SESSION["winner"] = "";
-
                 // Start a new game
-                $this->app->redirect("/play");
+                // -------------------------------------------------
+                $this->play();
             } elseif (
                 isset($_POST['btnLaunchMissile']) &&
                 !empty($_SESSION["playerBoard"]) &&
@@ -212,13 +167,16 @@ class AppController extends Controller
                 $_SESSION["playerBoard"] = $playerBoard;
                 $_SESSION["computerBoard"] = $computerBoard;
                 $_SESSION["winner"] = $winner;
-            }
 
-            return $this->app->view('play', [
-                'computerBoard' => $computerBoard,
-                'playerBoard' => $playerBoard,
-                'winner' => $winner
-            ]);
+                return $this->app->view('play', [
+                    'playerNickname' => $_SESSION["player_nickname"],
+                    'difficulty' => $_SESSION["difficulty"],
+                    'startedOn' => $_SESSION["started_on"],
+                    'computerBoard' => $computerBoard,
+                    'playerBoard' => $playerBoard,
+                    'winner' => $winner
+                ]);
+            }
         }
     }
 

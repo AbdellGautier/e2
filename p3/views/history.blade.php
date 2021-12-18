@@ -8,7 +8,7 @@
                 <div class="center">
                     <div class="row">
                         <div class="col s12">
-                            <h2 class="bold">Games History</h2>
+                            <h2 class="bold">Game History</h2>
                         </div>
                     </div>
                     @if (empty($games) != true)
@@ -50,11 +50,12 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col s2"><a href="/gamedetail?gid={{ $game['id'] }}"
-                                        class="underline">View Game</a></div>
-                                <div class="col s2">{{ date('m/d/y  H:i A', strtotime($game['started_on'])) }}
+                                <div class="col s2">
+                                    <a test="lnkRound" href="/round?id={{ $game['id'] }}" class="underline">View Game</a>
                                 </div>
-                                <div class="col s2">{{ date('m/d/y  H:i A', strtotime($game['ended_on'])) }}</div>
+                                <div class="col s2">{{ date('m/d/y  h:i A', strtotime($game['started_on'])) }}
+                                </div>
+                                <div class="col s2">{{ date('m/d/y  h:i A', strtotime($game['ended_on'])) }}</div>
                             </div>
                         @endforeach
                     @else
@@ -71,13 +72,15 @@
             </div>
             <div class="row">
                 <div class="col s12 center">
-                    <button type="submit" class="pushable" onclick="location.href='/';">
-                        <span class="shadow"></span>
-                        <span class="edge-alternate"></span>
-                        <span class="front-alternate">
-                            <i class="material-icons">arrow_back</i><br>Go Back
-                        </span>
-                    </button>
+                    <form method="POST" action="/">
+                        <button id="btnGoBack" test="btnGoBack" type="submit" class="pushable">
+                            <span class="shadow"></span>
+                            <span class="edge-alternate"></span>
+                            <span class="front-alternate">
+                                <i class="material-icons">arrow_back</i><br>Go Back
+                            </span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -92,7 +95,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col s12">
                 <h5 class="white-text">Instructions</h5>
                 <p class="grey-text text-lighten-4">
                 <ol>
@@ -100,24 +103,6 @@
                     <li>Click on "View Game" to see how the game ended.</li>
                 </ol>
                 </p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Resources utilized:</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3 underline" href="https://en.wikipedia.org/wiki/Battleship_(game)"
-                            target="_blank">Inspiration - Battleship game</a></li>
-                    <li><a class="grey-text text-lighten-3 underline" href="https://materializecss.com/" target="_blank">CSS
-                            - Materialize</a></li>
-                    <li><a class="grey-text text-lighten-3 underline" href="https://cssgradient.io/" target="_blank">CSS -
-                            Gradients</a></li>
-                    <li><a class="grey-text text-lighten-3 underline" href="https://codepen.io/ryandsouza13/pen/yEBJQV"
-                            target="_blank">CSS - 3D Text</a></li>
-                    <li><a class="grey-text text-lighten-3 underline"
-                            href="https://www.joshwcomeau.com/animation/3d-button/" target="_blank">CSS - 3D Button</a></li>
-                    <li><a class="grey-text text-lighten-3 underline"
-                            href="https://www.florin-pop.com/blog/2019/03/css-pulse-effect/" target="_blank">CSS - Pulsating
-                            Labels</a></li>
-                </ul>
             </div>
         </div>
     </div>

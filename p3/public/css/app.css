@@ -95,6 +95,10 @@ h2 {
     margin: 1px;
 }
 
+.rdo-home {
+    line-height: 35px !important;
+}
+
 /* Launch Missile 3D Button styles */
 /* Credit: https://www.joshwcomeau.com/animation/3d-button/ */
 .pushable {

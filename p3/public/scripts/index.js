@@ -3,7 +3,8 @@ function getFunkyNickname() {
     let funkyNicknames = [
         "Thornuts", "2SlowBut2Furious", "MarvelousMarvel", "Catman", "LemonyTilapia", "FlyingTurtly", "Aragonaut",
         "TinyBotiBot", "MrJingles", "Othello", "AlienInterceptor", "TheProtector", "DanielSan", "TDLemons",
-        "MonasticMonk", "UnluckyCharms", "CocoChoco", "SpaceBowler", "SmurfsfySlushie", "IceColdSurfer"];
+        "MonasticMonk", "UnluckyCharms", "CocoChoco", "SpaceBowler", "SmurfsfySlushie", "IceColdSurfer",
+        "SneakySnake", "ParagonOfParagons", "ChewyMangoeyMango", "LetGoOfLegolasTheLego", "AntiGravityMouse"];
 
     // Grab a reference to the Nickname field
     let Player_Nickname = document.getElementById("Player_Nickname");
@@ -43,7 +44,7 @@ function validateGameLaunch() {
 function validateMissileLaunch() {
 
     // Reference all of our target radio buttons
-    var rdoTargets = document.getElementsByName('CB');
+    var rdoTargets = document.getElementsByName('CB'); // CB = Computer Board
 
     // Check if we have any targets selected
     for (var i = 0; i < rdoTargets.length; i++) {
